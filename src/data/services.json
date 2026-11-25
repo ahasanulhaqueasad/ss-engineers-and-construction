@@ -1,0 +1,79 @@
+[
+  {
+    "id": 1,
+    "title": "Architectural Design",
+    "description": "Modern and functional architectural planning for residential and commercial spaces.",
+    "icon": "architecture",
+    "category": "Design"
+  },
+  {
+    "id": 2,
+    "title": "Structural Design",
+    "description": "Safe, durable and efficient structural engineering solutions.",
+    "icon": "structure",
+    "category": "Design"
+  },
+  {
+    "id": 3,
+    "title": "Civil Construction",
+    "description": "Complete construction solutions with a focus on quality and precision.",
+    "icon": "construction",
+    "category": "Construction"
+  },
+  {
+    "id": 4,
+    "title": "Interior Design",
+    "description": "Beautiful, practical and comfortable interior design solutions.",
+    "icon": "interior",
+    "category": "Design"
+  },
+  {
+    "id": 5,
+    "title": "Land Survey",
+    "description": "Accurate land surveying and site measurement services.",
+    "icon": "survey",
+    "category": "Consultancy"
+  },
+  {
+    "id": 6,
+    "title": "Soil Test",
+    "description": "Reliable soil investigation and geotechnical testing services.",
+    "icon": "soil",
+    "category": "Consultancy"
+  },
+  {
+    "id": 7,
+    "title": "Project Management",
+    "description": "Professional project planning, coordination and supervision.",
+    "icon": "management",
+    "category": "Management"
+  },
+  {
+    "id": 8,
+    "title": "Renovation",
+    "description": "Building renovation, remodeling and improvement solutions.",
+    "icon": "renovation",
+    "category": "Construction"
+  },
+  {
+    "id": 9,
+    "title": "Electrical Work",
+    "description": "Reliable electrical installation and engineering solutions.",
+    "icon": "electrical",
+    "category": "Construction"
+  },
+  {
+    "id": 10,
+    "title": "Plumbing Work",
+    "description": "Efficient plumbing, drainage and water supply solutions.",
+    "icon": "plumbing",
+    "category": "Construction"
+  },
+  {
+    "id": 11,
+    "title": "Estimation & Costing",
+    "description": "Detailed construction cost estimation and budgeting services.",
+    "icon": "estimation",
+    "category": "Consultancy"
+  }
+]

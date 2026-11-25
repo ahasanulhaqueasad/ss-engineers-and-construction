@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "John Smith",
+    "role": "Residential Property Owner",
+    "review": "The team was professional, transparent and committed throughout the project. The quality of work exceeded our expectations.",
+    "rating": 5,
+    "image": "https://i.pravatar.cc/150?img=12"
+  },
+  {
+    "id": 2,
+    "name": "David Wilson",
+    "role": "Business Owner",
+    "review": "Excellent project management and timely delivery. Their engineering team understood our requirements and delivered a great result.",
+    "rating": 5,
+    "image": "https://i.pravatar.cc/150?img=13"
+  },
+  {
+    "id": 3,
+    "name": "Sarah Johnson",
+    "role": "Homeowner",
+    "review": "I appreciated their attention to detail, clear communication and professional approach. I would happily recommend their services.",
+    "rating": 5,
+    "image": "https://i.pravatar.cc/150?img=44"
+  }
+]
