@@ -5,6 +5,7 @@
     "description": "Modern and functional architectural planning for residential and commercial spaces.",
     "icon": "architecture",
     "category": "Design",
+    "relatedProjectIds": [5],
     "overview": "Architectural design focuses on creating functional, comfortable and visually appealing spaces. We plan building layouts by considering the client's requirements, available space and intended use of the property.",
     "features": [
       "Residential and commercial building planning",
@@ -43,6 +44,7 @@
     "description": "Safe, durable and efficient structural engineering solutions.",
     "icon": "structure",
     "category": "Design",
+    "relatedProjectIds": [1, 2],
     "overview": "Structural design focuses on the strength, stability and durability of buildings. It considers project requirements, site conditions and relevant engineering principles to develop structural drawings and design solutions.",
     "features": [
       "Structural planning for buildings",
@@ -81,6 +83,7 @@
     "description": "Complete construction solutions with a focus on quality and precision.",
     "icon": "construction",
     "category": "Construction",
+    "relatedProjectIds": [1, 2, 4],
     "overview": "Civil construction covers building and infrastructure work from initial planning through execution. Project requirements, drawings, materials and site conditions are considered before work begins.",
     "features": [
       "Residential building construction",
@@ -119,6 +122,7 @@
     "description": "Beautiful, practical and comfortable interior design solutions.",
     "icon": "interior",
     "category": "Design",
+    "relatedProjectIds": [3],
     "overview": "Interior design aims to improve the functionality, comfort and appearance of indoor spaces. Design decisions are guided by the purpose of the space, available dimensions and client preferences.",
     "features": [
       "Residential interior planning",
@@ -157,6 +161,7 @@
     "description": "Accurate land surveying and site measurement services.",
     "icon": "survey",
     "category": "Consultancy",
+    "relatedProjectIds": [],
     "overview": "Land surveying involves measuring and documenting land and site information. Survey data can support property planning, boundary understanding and engineering design activities.",
     "features": [
       "Land measurement",
@@ -195,6 +200,7 @@
     "description": "Reliable soil investigation and geotechnical testing services.",
     "icon": "soil",
     "category": "Consultancy",
+    "relatedProjectIds": [],
     "overview": "Soil investigation helps assess ground conditions before construction. The findings can support engineering decisions about foundation requirements and site suitability.",
     "features": [
       "Soil investigation planning",
@@ -233,6 +239,7 @@
     "description": "Professional project planning, coordination and supervision.",
     "icon": "management",
     "category": "Management",
+    "relatedProjectIds": [1, 2, 4],
     "overview": "Project management supports organized construction activities through planning, coordination, progress monitoring and communication. The management approach depends on the agreed project responsibilities.",
     "features": [
       "Project planning and scheduling",
@@ -271,6 +278,7 @@
     "description": "Building renovation, remodeling and improvement solutions.",
     "icon": "renovation",
     "category": "Construction",
+    "relatedProjectIds": [6],
     "overview": "Renovation services focus on improving existing buildings and spaces. Work requirements are assessed based on the current condition of the property and the client's improvement goals.",
     "features": [
       "Residential building renovation",
@@ -309,6 +317,7 @@
     "description": "Reliable electrical installation and engineering solutions.",
     "icon": "electrical",
     "category": "Construction",
+    "relatedProjectIds": [],
     "overview": "Electrical work covers electrical planning and installation requirements for buildings. The scope is determined by the building type, electrical load requirements and applicable safety considerations.",
     "features": [
       "Building electrical layout planning",
@@ -347,6 +356,7 @@
     "description": "Efficient plumbing, drainage and water supply solutions.",
     "icon": "plumbing",
     "category": "Construction",
+    "relatedProjectIds": [],
     "overview": "Plumbing work covers water supply, drainage and related building systems. Planning and installation requirements are considered according to the building layout and intended use.",
     "features": [
       "Water supply system planning",
@@ -385,6 +395,7 @@
     "description": "Detailed construction cost estimation and budgeting services.",
     "icon": "estimation",
     "category": "Consultancy",
+    "relatedProjectIds": [1, 2, 4],
     "overview": "Estimation and costing help clients understand the expected construction expenses before starting a project. Estimates are prepared using available drawings, specifications, quantities and applicable rates.",
     "features": [
       "Construction quantity estimation",

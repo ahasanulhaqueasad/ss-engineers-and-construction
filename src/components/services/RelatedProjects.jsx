@@ -4,14 +4,18 @@ import { FaMapMarkerAlt, FaArrowRight } from "react-icons/fa";
 
 import projects from "../../data/projects.json";
 
-const RelatedProjects = ({ title = "Related Projects", category }) => {
-  const filteredProjects = category
-    ? projects.filter(
-        (project) => project.category?.toLowerCase() === category.toLowerCase(),
-      )
-    : projects;
-
-  const displayedProjects = filteredProjects.slice(0, 3);
+const RelatedProjects = ({
+  title = "Related Projects",
+  relatedProjectIds = [],
+}) => {
+  const displayedProjects = projects
+    .filter(
+      (project) =>
+        relatedProjectIds.includes(project.id) &&
+        project.published === true &&
+        project.showOnWebsite === true,
+    )
+    .slice(0, 3);
 
   return (
     <section className="bg-white px-5 py-20 lg:px-8 lg:py-28">
@@ -52,7 +56,7 @@ const RelatedProjects = ({ title = "Related Projects", category }) => {
         {displayedProjects.length > 0 ? (
           <div className="grid gap-7 md:grid-cols-2 lg:grid-cols-3">
             {displayedProjects.map((project, index) => (
-              <motion.div
+              <motion.article
                 key={project.id}
                 initial={{ opacity: 0, y: 25 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -65,6 +69,7 @@ const RelatedProjects = ({ title = "Related Projects", category }) => {
                   <img
                     src={project.image}
                     alt={project.title}
+                    loading="lazy"
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
 
@@ -96,7 +101,7 @@ const RelatedProjects = ({ title = "Related Projects", category }) => {
                     <FaArrowRight />
                   </Link>
                 </div>
-              </motion.div>
+              </motion.article>
             ))}
           </div>
         ) : (

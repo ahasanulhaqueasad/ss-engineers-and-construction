@@ -16,6 +16,7 @@ const categories = [
     services: ["Architectural Design", "Structural Design", "Interior Design"],
     icon: FaDraftingCompass,
     number: "01",
+    category: "Design & Architecture",
   },
   {
     id: 2,
@@ -30,6 +31,7 @@ const categories = [
     ],
     icon: FaBuilding,
     number: "02",
+    category: "Construction & Development",
   },
   {
     id: 3,
@@ -39,6 +41,7 @@ const categories = [
     services: ["Land Survey", "Soil Test", "Estimation & Costing"],
     icon: FaClipboardCheck,
     number: "03",
+    category: "Engineering Consultancy",
   },
   {
     id: 4,
@@ -48,14 +51,27 @@ const categories = [
     services: ["Project Management"],
     icon: FaTasks,
     number: "04",
+    category: "Project Management",
   },
 ];
 
 const ServiceCategories = () => {
+  const handleCategoryClick = (category) => {
+    window.dispatchEvent(
+      new CustomEvent("select-service-category", {
+        detail: category,
+      }),
+    );
+
+    document.getElementById("all-services")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
   return (
     <section className="bg-white px-5 py-20 lg:px-8 lg:py-28">
       <div className="mx-auto max-w-7xl">
-        {/* Section Heading */}
         <motion.div
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -78,31 +94,29 @@ const ServiceCategories = () => {
           </p>
         </motion.div>
 
-        {/* Category Cards */}
         <div className="grid gap-7 md:grid-cols-2">
           {categories.map((category, index) => {
             const Icon = category.icon;
 
             return (
-              <motion.div
+              <motion.button
                 key={category.id}
+                type="button"
+                onClick={() => handleCategoryClick(category.category)}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-8 transition-all duration-300 hover:-translate-y-2 hover:border-accent/40 hover:shadow-xl sm:p-10"
+                className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-8 text-left transition-all duration-300 hover:-translate-y-2 hover:border-accent/40 hover:shadow-xl sm:p-10"
               >
-                {/* Number */}
                 <span className="absolute right-7 top-5 font-heading text-6xl font-extrabold text-slate-100 transition-colors group-hover:text-orange-100">
                   {category.number}
                 </span>
 
-                {/* Icon */}
                 <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl bg-orange-50 text-3xl text-accent transition-all duration-300 group-hover:bg-accent group-hover:text-white">
                   <Icon />
                 </div>
 
-                {/* Content */}
                 <h3 className="relative mt-7 font-heading text-2xl font-extrabold text-brand">
                   {category.title}
                 </h3>
@@ -111,7 +125,6 @@ const ServiceCategories = () => {
                   {category.description}
                 </p>
 
-                {/* Service List */}
                 <div className="mt-7 flex flex-wrap gap-2">
                   {category.services.map((service) => (
                     <span
@@ -123,7 +136,6 @@ const ServiceCategories = () => {
                   ))}
                 </div>
 
-                {/* Bottom Decoration */}
                 <div className="mt-8 flex items-center justify-between border-t border-slate-100 pt-6">
                   <span className="text-sm font-bold text-brand">
                     Explore Category
@@ -133,7 +145,7 @@ const ServiceCategories = () => {
                     <FaArrowRight />
                   </span>
                 </div>
-              </motion.div>
+              </motion.button>
             );
           })}
         </div>

@@ -1,5 +1,4 @@
 import { motion } from "motion/react";
-import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 import {
@@ -9,11 +8,14 @@ import {
   FaBuilding,
 } from "react-icons/fa";
 
-const highlights = ["professional", "quality", "team", "management"];
+const highlights = [
+  "Professional Engineering Solutions",
+  "Quality-Focused Approach",
+  "Skilled & Dedicated Team",
+  "Responsible Project Management",
+];
 
 const CompanyStory = () => {
-  const { t } = useTranslation();
-
   return (
     <section
       aria-labelledby="company-story-heading"
@@ -31,7 +33,7 @@ const CompanyStory = () => {
           <div className="relative overflow-hidden rounded-2xl">
             <img
               src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1200"
-              alt={t("companyStory.imageAlt")}
+              alt="Engineering and architectural building design"
               width="1200"
               height="800"
               loading="lazy"
@@ -50,11 +52,11 @@ const CompanyStory = () => {
             <FaBuilding aria-hidden="true" className="mb-3 text-3xl" />
 
             <h3 className="font-heading text-2xl font-extrabold">
-              {t("companyStory.cardTitle")}
+              Engineering Excellence
             </h3>
 
             <p className="mt-1 text-sm font-medium text-white/90">
-              {t("companyStory.cardDescription")}
+              Building with Quality and Precision
             </p>
           </div>
 
@@ -74,7 +76,7 @@ const CompanyStory = () => {
         >
           {/* Section Label */}
           <span className="font-bold uppercase tracking-[3px] text-accent">
-            {t("companyStory.eyebrow")}
+            Our Company
           </span>
 
           {/* Main Heading */}
@@ -82,20 +84,23 @@ const CompanyStory = () => {
             id="company-story-heading"
             className="mt-5 font-heading text-3xl font-extrabold leading-tight text-brand sm:text-4xl lg:text-5xl"
           >
-            {t("companyStory.headingStart")}
-            <span className="text-accent">
-              {" "}
-              {t("companyStory.headingHighlight")}
-            </span>
+            Building a Better Future Through
+            <span className="text-accent"> Engineering</span>
           </h2>
 
           {/* Company Description */}
           <p className="mt-7 leading-8 text-slate-600">
-            {t("companyStory.paragraphOne")}
+            SS Engineers & Construction provides engineering, design,
+            consultancy and construction solutions tailored to project
+            requirements. We focus on practical planning, technical
+            considerations and responsible project execution.
           </p>
 
           <p className="mt-5 leading-8 text-slate-600">
-            {t("companyStory.paragraphTwo")}
+            Our approach emphasizes quality, attention to detail, professional
+            coordination and client communication throughout the project
+            process. We aim to deliver dependable solutions that align with our
+            clients' expectations and project objectives.
           </p>
 
           {/* Company Highlights */}
@@ -107,9 +112,7 @@ const CompanyStory = () => {
                   className="mt-1 shrink-0 text-lg text-accent"
                 />
 
-                <span className="text-sm font-semibold text-brand">
-                  {t(`companyStory.highlights.${item}`)}
-                </span>
+                <span className="text-sm font-semibold text-brand">{item}</span>
               </li>
             ))}
           </ul>
@@ -124,11 +127,11 @@ const CompanyStory = () => {
 
               <div>
                 <h3 className="font-heading font-extrabold text-brand">
-                  {t("companyStory.qualityTitle")}
+                  Quality Commitment
                 </h3>
 
                 <p className="text-xs text-slate-500">
-                  {t("companyStory.qualitySubtitle")}
+                  Focused on Quality and Reliability
                 </p>
               </div>
             </div>
@@ -138,8 +141,7 @@ const CompanyStory = () => {
               to="/contact"
               className="inline-flex items-center gap-3 font-bold text-brand transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4"
             >
-              {t("companyStory.contactButton")}
-
+              Contact Our Team
               <FaArrowRight aria-hidden="true" />
             </Link>
           </div>

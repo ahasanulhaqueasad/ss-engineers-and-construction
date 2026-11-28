@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Link } from "react-router-dom";
 
@@ -59,7 +59,6 @@ const ServiceList = ({ title, icon: Icon, items }) => {
             className="flex items-start gap-3 rounded-xl border border-base-300 bg-surface p-4"
           >
             <FaCheckCircle className="mt-1 shrink-0 text-brand" />
-
             <span className="text-sm leading-6 text-muted">{item}</span>
           </div>
         ))}
@@ -173,10 +172,46 @@ const AllServices = () => {
   );
 
   const [isExpanded, setIsExpanded] = useState(false);
+  const [activeCategory, setActiveCategory] = useState("All Services");
 
-  const selectedService = services.find(
-    (service) => service.id === selectedServiceId,
-  );
+  const categories = [
+    "All Services",
+    ...new Set(services.map((service) => service.category).filter(Boolean)),
+  ];
+
+  useEffect(() => {
+    const handleCategorySelection = (event) => {
+      const category = event.detail;
+
+      const firstService = services.find(
+        (service) => service.category === category,
+      );
+
+      if (!firstService) return;
+
+      setActiveCategory(category);
+      setSelectedServiceId(firstService.id);
+      setIsExpanded(false);
+    };
+
+    window.addEventListener("select-service-category", handleCategorySelection);
+
+    return () => {
+      window.removeEventListener(
+        "select-service-category",
+        handleCategorySelection,
+      );
+    };
+  }, []);
+
+  const filteredServices =
+    activeCategory === "All Services"
+      ? services
+      : services.filter((service) => service.category === activeCategory);
+
+  const selectedService =
+    filteredServices.find((service) => service.id === selectedServiceId) ||
+    filteredServices[0];
 
   if (!services.length || !selectedService) return null;
 
@@ -187,13 +222,27 @@ const AllServices = () => {
     setIsExpanded(false);
   };
 
+  const handleCategoryChange = (category) => {
+    setActiveCategory(category);
+
+    const firstService =
+      category === "All Services"
+        ? services[0]
+        : services.find((service) => service.category === category);
+
+    if (firstService) {
+      setSelectedServiceId(firstService.id);
+    }
+
+    setIsExpanded(false);
+  };
+
   return (
     <section
       id="all-services"
-      className="bg-surface px-5 py-20 lg:px-8 lg:py-28"
+      className="scroll-mt-24 bg-surface px-5 py-20 lg:px-8 lg:py-28"
     >
       <div className="mx-auto max-w-7xl">
-        {/* Section Heading */}
         <motion.div
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -215,9 +264,7 @@ const AllServices = () => {
           </p>
         </motion.div>
 
-        {/* Services Layout */}
         <div className="grid items-start gap-6 lg:grid-cols-[340px_minmax(0,1fr)]">
-          {/* Left: Service List */}
           <motion.div
             initial={{ opacity: 0, x: -25 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -226,17 +273,35 @@ const AllServices = () => {
             className="rounded-2xl border border-base-300 bg-white p-4 shadow-sm lg:sticky lg:top-24"
           >
             <h3 className="mb-4 px-2 text-lg font-bold text-heading">
-              All Services
-              <span className="ml-2 text-sm font-medium text-muted">
-                ({services.length})
-              </span>
+              Browse Services
             </h3>
 
+            <div className="mb-4 flex flex-wrap gap-2">
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  type="button"
+                  onClick={() => handleCategoryChange(category)}
+                  className={`rounded-full border px-3 py-2 text-xs font-bold transition ${
+                    activeCategory === category
+                      ? "border-brand bg-brand text-white"
+                      : "border-base-300 bg-white text-muted hover:border-brand hover:text-brand"
+                  }`}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
+
+            <div className="mb-3 border-t border-base-300 pt-4 text-sm font-semibold text-muted">
+              {filteredServices.length} Services
+            </div>
+
             <div className="flex flex-col gap-2">
-              {services.map((service, index) => {
+              {filteredServices.map((service, index) => {
                 const ServiceIcon = iconMap[service.icon] || FaDraftingCompass;
 
-                const isActive = selectedServiceId === service.id;
+                const isActive = selectedService.id === service.id;
 
                 return (
                   <button
@@ -288,7 +353,6 @@ const AllServices = () => {
             </div>
           </motion.div>
 
-          {/* Right: Selected Service Details */}
           <div className="min-w-0">
             <AnimatePresence mode="wait">
               <motion.div
@@ -299,7 +363,6 @@ const AllServices = () => {
                 transition={{ duration: 0.3 }}
                 className="overflow-hidden rounded-2xl border border-base-300 bg-white shadow-sm"
               >
-                {/* Service Header */}
                 <div className="bg-brand px-6 py-8 text-white sm:px-8 sm:py-10">
                   <div className="mb-6 flex items-center justify-between gap-4">
                     <span className="rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-wider">
@@ -328,9 +391,7 @@ const AllServices = () => {
                   </div>
                 </div>
 
-                {/* Service Content */}
                 <div className="p-6 sm:p-8">
-                  {/* Overview */}
                   <div className="mb-8">
                     <span className="mb-3 block text-xs font-bold uppercase tracking-[0.18em] text-brand">
                       Service Overview
@@ -345,7 +406,6 @@ const AllServices = () => {
                     </p>
                   </div>
 
-                  {/* Full Details */}
                   <AnimatePresence initial={false}>
                     {isExpanded && (
                       <motion.div
@@ -376,7 +436,6 @@ const AllServices = () => {
                     )}
                   </AnimatePresence>
 
-                  {/* Action Buttons */}
                   <div className="mt-8 flex flex-wrap items-center gap-3 border-t border-base-300 pt-6">
                     <button
                       type="button"
@@ -411,7 +470,6 @@ const AllServices = () => {
           </div>
         </div>
 
-        {/* Bottom CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

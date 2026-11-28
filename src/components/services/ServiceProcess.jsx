@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { Link } from "react-router-dom";
 import {
   FaComments,
   FaMapMarkedAlt,
@@ -137,13 +138,13 @@ const ServiceProcess = () => {
             solution together.
           </p>
 
-          <a
-            href="/request-quote"
+          <Link
+            to="/request-quote"
             className="mt-7 inline-flex items-center gap-3 rounded-lg bg-brand px-7 py-4 font-bold text-white transition-all hover:bg-accent"
           >
             Start Your Project
             <FaArrowRight />
-          </a>
+          </Link>
         </div>
       </div>
     </section>

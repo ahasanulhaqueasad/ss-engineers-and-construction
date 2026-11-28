@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import companyLogo from "../../assets/images/SS Engineers Logo.png";
 import {
   FaPhoneAlt,
   FaEnvelope,
@@ -47,6 +47,11 @@ const Footer = () => {
             aria-label="SS Engineers & Construction Home"
             className="inline-block rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-[#0B1F33]"
           >
+            <img
+              src={companyLogo}
+              alt="SS Engineers & Construction"
+              className="h-40 w-40 object-contain"
+            />
             <span className="font-heading text-2xl font-extrabold">
               SS <span className="text-accent">ENGINEERS</span>
             </span>
