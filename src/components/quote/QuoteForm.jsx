@@ -1,5 +1,4 @@
-import { useMemo, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useMemo, useState } from "react";
 import {
   FaUser,
   FaPhoneAlt,
@@ -23,9 +22,13 @@ import {
   FaHardHat,
   FaImages,
   FaFolderOpen,
+  FaWhatsapp,
 } from "react-icons/fa";
 
 import services from "../../data/services.json";
+
+const COMPANY_WHATSAPP = "8801838041204";
+const COMPANY_EMAIL = "ahasanulhaque204@gmail.com";
 
 const steps = [
   { number: 1, title: "Personal Information" },
@@ -91,15 +94,27 @@ const inputClass =
 
 const labelClass = "mb-2 block text-sm font-semibold text-brand";
 
-const QuoteForm = () => {
-  const navigate = useNavigate();
+const MAX_FILE_SIZE = 10 * 1024 * 1024;
+const MAX_TOTAL_SIZE = 25 * 1024 * 1024;
 
+const normalizePhone = (phone) => phone.replace(/[\s-]/g, "");
+
+const isValidBangladeshiPhone = (phone) => {
+  const normalized = normalizePhone(phone);
+
+  return /^(?:\+8801|8801|01)[3-9]\d{8}$/.test(normalized);
+};
+
+const isValidEmail = (email) => {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+};
+
+const QuoteForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState(initialFormData);
   const [files, setFiles] = useState([]);
   const [errors, setErrors] = useState({});
-
-  const fileInputRefs = useRef({});
+  const [fileFeedback, setFileFeedback] = useState("");
 
   const totalFileSize = useMemo(
     () => files.reduce((total, item) => total + item.file.size, 0),
@@ -128,15 +143,13 @@ const QuoteForm = () => {
 
       if (!formData.phone.trim()) {
         newErrors.phone = "Please enter your phone number.";
-      } else if (
-        !/^(?:\+?8801|01)[3-9]\d{8}$/.test(formData.phone.replace(/[\s-]/g, ""))
-      ) {
+      } else if (!isValidBangladeshiPhone(formData.phone)) {
         newErrors.phone = "Please enter a valid Bangladeshi phone number.";
       }
 
       if (!formData.email.trim()) {
         newErrors.email = "Please enter your email address.";
-      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      } else if (!isValidEmail(formData.email)) {
         newErrors.email = "Please enter a valid email address.";
       }
     }
@@ -152,104 +165,152 @@ const QuoteForm = () => {
 
       if (!formData.description.trim()) {
         newErrors.description = "Please describe your project.";
+      } else if (formData.description.trim().length < 10) {
+        newErrors.description =
+          "Please provide at least 10 characters about your project.";
+      }
+
+      if (
+        formData.projectSize &&
+        (!Number.isFinite(Number(formData.projectSize)) ||
+          Number(formData.projectSize) <= 0)
+      ) {
+        newErrors.projectSize = "Project size must be greater than zero.";
       }
     }
 
     setErrors(newErrors);
+
     return Object.keys(newErrors).length === 0;
   };
 
   const handleNext = () => {
     if (!validateStep()) return;
 
+    setErrors({});
     setCurrentStep((previous) => Math.min(previous + 1, 4));
   };
 
   const handleBack = () => {
     setErrors({});
+    setFileFeedback("");
     setCurrentStep((previous) => Math.max(previous - 1, 1));
   };
 
-  const handleFiles = (selectedFiles, category) => {
+  const handleFiles = (selectedFiles, categoryId) => {
     const categoryConfig = attachmentCategories.find(
-      (item) => item.id === category,
+      (item) => item.id === categoryId,
     );
 
     if (!categoryConfig) return;
 
-    const newFiles = [];
-    let fileError = "";
+    const incomingFiles = Array.from(selectedFiles || []);
+    const acceptedFiles = [];
+    const rejectedMessages = [];
 
-    for (const file of Array.from(selectedFiles || [])) {
-      const extension = file.name.split(".").pop().toLowerCase();
+    for (const file of incomingFiles) {
+      const extension = file.name.split(".").pop()?.toLowerCase();
 
       if (!categoryConfig.extensions.includes(extension)) {
-        fileError = `${file.name}: Unsupported file type for ${categoryConfig.title}.`;
+        rejectedMessages.push(
+          `${file.name}: Unsupported file type for ${categoryConfig.title}.`,
+        );
         continue;
       }
 
-      if (file.size > 10 * 1024 * 1024) {
-        fileError = `${file.name}: Maximum file size is 10 MB.`;
+      if (file.size === 0) {
+        rejectedMessages.push(`${file.name}: Empty files are not allowed.`);
+        continue;
+      }
+
+      if (file.size > MAX_FILE_SIZE) {
+        rejectedMessages.push(`${file.name}: Maximum file size is 10 MB.`);
         continue;
       }
 
       const alreadyAdded = files.some(
         (item) =>
-          item.category === category &&
+          item.category === categoryId &&
           item.file.name === file.name &&
           item.file.size === file.size,
       );
 
-      const alreadySelected = newFiles.some(
-        (item) => item.name === file.name && item.size === file.size,
+      const alreadySelected = acceptedFiles.some(
+        (item) =>
+          item.category === categoryId &&
+          item.file.name === file.name &&
+          item.file.size === file.size,
       );
 
-      if (!alreadyAdded && !alreadySelected) {
-        newFiles.push(file);
+      if (alreadyAdded || alreadySelected) {
+        rejectedMessages.push(`${file.name}: File already selected.`);
+        continue;
       }
+
+      acceptedFiles.push({
+        file,
+        category: categoryId,
+      });
     }
 
-    const newTotalSize =
-      totalFileSize + newFiles.reduce((total, file) => total + file.size, 0);
+    let allowedFiles = [];
+    let projectedSize = totalFileSize;
 
-    if (newTotalSize > 25 * 1024 * 1024) {
-      fileError = "Total attachment size cannot exceed 25 MB.";
-    } else {
-      setFiles((previous) => [
-        ...previous,
-        ...newFiles.map((file) => ({
-          file,
-          category,
-        })),
-      ]);
+    for (const item of acceptedFiles) {
+      if (projectedSize + item.file.size > MAX_TOTAL_SIZE) {
+        rejectedMessages.push(
+          `${item.file.name}: Total attachment size cannot exceed 25 MB.`,
+        );
+        continue;
+      }
+
+      allowedFiles.push(item);
+      projectedSize += item.file.size;
     }
+
+    if (allowedFiles.length > 0) {
+      setFiles((previous) => [...previous, ...allowedFiles]);
+    }
+
+    setFileFeedback(
+      rejectedMessages.length > 0
+        ? rejectedMessages.join(" ")
+        : allowedFiles.length > 0
+          ? `${allowedFiles.length} file(s) added successfully.`
+          : "",
+    );
 
     setErrors((previous) => ({
       ...previous,
-      files: fileError,
+      files: "",
     }));
   };
 
-  const handleFileChange = (event, category) => {
-    handleFiles(event.target.files, category);
+  const handleFileChange = (event, categoryId) => {
+    handleFiles(event.target.files, categoryId);
     event.target.value = "";
   };
 
-  const handleFileDrop = (event, category) => {
+  const handleFileDrop = (event, categoryId) => {
     event.preventDefault();
-    handleFiles(event.dataTransfer.files, category);
+    handleFiles(event.dataTransfer.files, categoryId);
   };
 
   const removeFile = (indexToRemove) => {
+    const removedFile = files[indexToRemove];
+
     setFiles((previous) =>
       previous.filter((_, index) => index !== indexToRemove),
     );
-  };
 
-  const handleSubmit = () => {
-    // Frontend demo navigation only.
-    // Backend submission will be connected later.
-    navigate("/thank-you");
+    setFileFeedback(
+      removedFile ? `${removedFile.file.name} removed successfully.` : "",
+    );
+
+    setErrors((previous) => ({
+      ...previous,
+      files: "",
+    }));
   };
 
   const formatFileSize = (size) => {
@@ -260,9 +321,81 @@ const QuoteForm = () => {
     return `${(size / (1024 * 1024)).toFixed(2)} MB`;
   };
 
+  const buildInquiryMessage = () => {
+    const attachmentDetails =
+      files.length > 0
+        ? files
+            .map((item, index) => {
+              const category = attachmentCategories.find(
+                (categoryItem) => categoryItem.id === item.category,
+              );
+
+              return `${index + 1}. ${item.file.name} (${category?.title || "Other"})`;
+            })
+            .join("\n")
+        : "No attachments added.";
+
+    return `NEW PROJECT INQUIRY
+SS Engineers & Construction
+
+PERSONAL INFORMATION
+Full Name: ${formData.fullName}
+Phone: ${formData.phone}
+Email: ${formData.email}
+Company: ${formData.companyName || "Not provided"}
+Address: ${formData.address || "Not provided"}
+Preferred Contact: ${formData.contactMethod}
+
+PROJECT INFORMATION
+Project Name: ${formData.projectName || "Not provided"}
+Service: ${formData.serviceType}
+Project Location: ${formData.projectLocation}
+Project Size: ${
+      formData.projectSize
+        ? `${formData.projectSize} ${formData.projectSizeUnit}`
+        : "Not provided"
+    }
+Estimated Budget: ${formData.budget || "Not provided"}
+Expected Start Date: ${formData.expectedStartDate || "Not provided"}
+
+PROJECT DESCRIPTION
+${formData.description}
+
+ATTACHMENTS
+${attachmentDetails}
+
+Note: Attachment files are not included automatically. Please request the files separately from the client.`;
+  };
+
+  const handleWhatsAppSubmit = () => {
+    const message = buildInquiryMessage();
+    const whatsappUrl = `https://wa.me/${COMPANY_WHATSAPP}?text=${encodeURIComponent(
+      message,
+    )}`;
+
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+  };
+
+  const handleEmailSubmit = () => {
+    const subject = `New Project Inquiry - ${formData.fullName}`;
+    const body = buildInquiryMessage();
+
+    const mailtoUrl = `mailto:${COMPANY_EMAIL}?subject=${encodeURIComponent(
+      subject,
+    )}&body=${encodeURIComponent(body)}`;
+
+    window.location.href = mailtoUrl;
+  };
+
   const renderFieldError = (field) =>
     errors[field] ? (
-      <p className="mt-1.5 text-xs font-medium text-red-500">{errors[field]}</p>
+      <p
+        id={`${field}-error`}
+        role="alert"
+        className="mt-1.5 text-xs font-medium text-red-500"
+      >
+        {errors[field]}
+      </p>
     ) : null;
 
   const renderInput = ({
@@ -288,9 +421,21 @@ const QuoteForm = () => {
           id={name}
           name={name}
           type={type}
+          required={required}
+          autoComplete={
+            name === "fullName"
+              ? "name"
+              : name === "phone"
+                ? "tel"
+                : name === "email"
+                  ? "email"
+                  : "off"
+          }
           value={formData[name]}
           onChange={(event) => updateField(name, event.target.value)}
           placeholder={placeholder}
+          aria-invalid={Boolean(errors[name])}
+          aria-describedby={errors[name] ? `${name}-error` : undefined}
           className={`${inputClass} ${Icon ? "pl-11" : ""}`}
         />
       </div>
@@ -495,6 +640,10 @@ const QuoteForm = () => {
                           updateField("serviceType", event.target.value)
                         }
                         className={`${inputClass} pl-11`}
+                        aria-invalid={Boolean(errors.serviceType)}
+                        aria-describedby={
+                          errors.serviceType ? "serviceType-error" : undefined
+                        }
                       >
                         <option value="">Select a service</option>
 
@@ -526,6 +675,12 @@ const QuoteForm = () => {
                         }
                         placeholder="District / Area"
                         className={`${inputClass} pl-11`}
+                        aria-invalid={Boolean(errors.projectLocation)}
+                        aria-describedby={
+                          errors.projectLocation
+                            ? "projectLocation-error"
+                            : undefined
+                        }
                       />
                     </div>
 
@@ -551,6 +706,10 @@ const QuoteForm = () => {
                           }
                           placeholder="Enter size"
                           className={`${inputClass} pl-11`}
+                          aria-invalid={Boolean(errors.projectSize)}
+                          aria-describedby={
+                            errors.projectSize ? "projectSize-error" : undefined
+                          }
                         />
                       </div>
 
@@ -567,6 +726,8 @@ const QuoteForm = () => {
                         <option value="storey">Storey</option>
                       </select>
                     </div>
+
+                    {renderFieldError("projectSize")}
                   </div>
 
                   <div>
@@ -608,6 +769,7 @@ const QuoteForm = () => {
                       <input
                         id="expectedStartDate"
                         type="date"
+                        min={new Date().toISOString().split("T")[0]}
                         value={formData.expectedStartDate}
                         onChange={(event) =>
                           updateField("expectedStartDate", event.target.value)
@@ -635,6 +797,10 @@ const QuoteForm = () => {
                         }
                         placeholder="Describe your project, requirements, and expectations..."
                         className={`${inputClass} resize-y pl-11`}
+                        aria-invalid={Boolean(errors.description)}
+                        aria-describedby={
+                          errors.description ? "description-error" : undefined
+                        }
                       />
                     </div>
 
@@ -644,7 +810,7 @@ const QuoteForm = () => {
               </div>
             )}
 
-            {/* Step 3: Categorized Attachments */}
+            {/* Step 3 */}
             {currentStep === 3 && (
               <div>
                 <div className="mb-8">
@@ -669,6 +835,7 @@ const QuoteForm = () => {
                 <div className="space-y-6">
                   {attachmentCategories.map((category) => {
                     const Icon = category.icon;
+
                     const categoryFiles = files
                       .map((item, index) => ({ ...item, index }))
                       .filter((item) => item.category === category.id);
@@ -721,9 +888,6 @@ const QuoteForm = () => {
 
                             <input
                               id={`upload-${category.id}`}
-                              ref={(element) => {
-                                fileInputRefs.current[category.id] = element;
-                              }}
                               type="file"
                               multiple
                               accept={category.accept}
@@ -775,6 +939,19 @@ const QuoteForm = () => {
                   })}
                 </div>
 
+                {fileFeedback && (
+                  <p
+                    role="status"
+                    className={`mt-4 text-sm font-medium ${
+                      fileFeedback.includes(":")
+                        ? "text-red-500"
+                        : "text-green-600"
+                    }`}
+                  >
+                    {fileFeedback}
+                  </p>
+                )}
+
                 {renderFieldError("files")}
 
                 <div className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-xl bg-surface p-4">
@@ -782,6 +959,7 @@ const QuoteForm = () => {
                     <p className="text-sm font-bold text-brand">
                       Total Selected Files: {files.length}
                     </p>
+
                     <p className="mt-1 text-xs text-muted">
                       {formatFileSize(totalFileSize)} of 25 MB used
                     </p>
@@ -792,7 +970,7 @@ const QuoteForm = () => {
                       className="h-full rounded-full bg-accent transition-all"
                       style={{
                         width: `${Math.min(
-                          (totalFileSize / (25 * 1024 * 1024)) * 100,
+                          (totalFileSize / MAX_TOTAL_SIZE) * 100,
                           100,
                         )}%`,
                       }}
@@ -851,13 +1029,16 @@ const QuoteForm = () => {
                   {renderReviewItem("Project Name", formData.projectName)}
                   {renderReviewItem("Service", formData.serviceType)}
                   {renderReviewItem("Location", formData.projectLocation)}
+
                   {renderReviewItem(
                     "Project Size",
                     formData.projectSize
                       ? `${formData.projectSize} ${formData.projectSizeUnit}`
                       : "",
                   )}
+
                   {renderReviewItem("Budget", formData.budget)}
+
                   {renderReviewItem(
                     "Expected Start",
                     formData.expectedStartDate,
@@ -910,6 +1091,7 @@ const QuoteForm = () => {
                                 >
                                   <span className="flex min-w-0 items-center gap-2 truncate text-brand">
                                     <FaFileAlt className="shrink-0 text-accent" />
+
                                     <span className="truncate">
                                       {item.file.name}
                                     </span>
@@ -929,9 +1111,10 @@ const QuoteForm = () => {
                 </div>
 
                 <div className="mt-6 rounded-xl bg-surface p-4 text-sm leading-6 text-muted">
-                  By proceeding, you confirm that the information provided above
-                  is accurate. Actual submission and confirmation will be
-                  enabled after backend integration.
+                  Your inquiry will be prepared in your selected messaging or
+                  email application. You will need to press Send there to
+                  complete the submission. Uploaded files must be attached
+                  separately.
                 </div>
               </div>
             )}
@@ -958,14 +1141,25 @@ const QuoteForm = () => {
                   <FaArrowRight />
                 </button>
               ) : (
-                <button
-                  type="button"
-                  onClick={handleSubmit}
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-accent px-7 py-3.5 text-sm font-bold text-white transition hover:bg-brand"
-                >
-                  Submit Inquiry
-                  <FaCheck />
-                </button>
+                <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+                  <button
+                    type="button"
+                    onClick={handleWhatsAppSubmit}
+                    className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#25D366] px-6 py-3.5 text-sm font-bold text-white transition hover:bg-[#1DA851]"
+                  >
+                    <FaWhatsapp className="text-lg" />
+                    Send via WhatsApp
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={handleEmailSubmit}
+                    className="inline-flex items-center justify-center gap-2 rounded-xl bg-accent px-6 py-3.5 text-sm font-bold text-white transition hover:bg-brand"
+                  >
+                    <FaEnvelope />
+                    Send via Email
+                  </button>
+                </div>
               )}
             </div>
           </div>
@@ -973,7 +1167,8 @@ const QuoteForm = () => {
 
         <p className="mt-6 text-center text-xs leading-6 text-muted">
           <FaCheck className="mr-1 inline text-green-600" />
-          Your project information is intended to be handled securely.
+          Your inquiry details will be prepared for secure sharing through your
+          chosen application.
         </p>
       </div>
     </section>

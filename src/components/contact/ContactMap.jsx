@@ -1,6 +1,9 @@
 import { motion } from "motion/react";
 import { FaMapMarkerAlt, FaExternalLinkAlt } from "react-icons/fa";
 
+const officeLocation =
+  "Satkhira Kindergarten, Stadium Road, Satkhira Pourashava, Satkhira, Bangladesh";
+
 const ContactMap = () => {
   return (
     <section className="bg-white px-5 py-20 lg:px-8">
@@ -39,8 +42,8 @@ const ContactMap = () => {
             {/* Map */}
             <div className="relative min-h-[350px] lg:col-span-2 lg:min-h-[450px]">
               <iframe
-                title="Office Location Map"
-                src="https://www.google.com/maps?q=Dhaka,Bangladesh&output=embed"
+                title="SS Engineers & Construction Office Location"
+                src={`https://www.google.com/maps?q=${encodeURIComponent(officeLocation)}&output=embed`}
                 width="100%"
                 height="100%"
                 style={{
@@ -65,7 +68,8 @@ const ContactMap = () => {
               </h3>
 
               <p className="mt-4 leading-7 text-slate-600">
-                Your Company Office Address, Dhaka, Bangladesh.
+                Near Satkhira Kindergarten, Stadium Road, Satkhira Pourashava,
+                Satkhira, Bangladesh.
               </p>
 
               <div className="my-7 h-px bg-slate-200" />
@@ -74,12 +78,14 @@ const ContactMap = () => {
                 Office Location
               </p>
 
-              <p className="mt-2 font-bold text-brand">Dhaka, Bangladesh</p>
+              <p className="mt-2 font-bold text-brand">
+                Stadium Road, Satkhira
+              </p>
 
               <a
-                href="https://www.google.com/maps/search/?api=1&query=Dhaka%2CBangladesh"
+                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(officeLocation)}`}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="mt-8 inline-flex items-center justify-center gap-3 rounded-lg bg-brand px-6 py-4 font-bold text-white transition-all hover:bg-accent"
               >
                 Get Directions

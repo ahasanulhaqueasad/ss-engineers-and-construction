@@ -1,22 +1,24 @@
 import { motion } from "motion/react";
+import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
+
 import {
   FaCheckCircle,
   FaArrowRight,
   FaAward,
   FaBuilding,
 } from "react-icons/fa";
-import { Link } from "react-router-dom";
+
+const highlights = ["professional", "quality", "team", "management"];
 
 const CompanyStory = () => {
-  const highlights = [
-    "Professional Engineering Solutions",
-    "Quality-Focused Construction",
-    "Experienced Technical Team",
-    "Client-Centered Project Management",
-  ];
+  const { t } = useTranslation();
 
   return (
-    <section className="overflow-hidden bg-white px-5 py-20 lg:px-8 lg:py-28">
+    <section
+      aria-labelledby="company-story-heading"
+      className="overflow-hidden bg-white px-5 py-20 lg:px-8 lg:py-28"
+    >
       <div className="mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-2">
         {/* Image Area */}
         <motion.div
@@ -29,26 +31,38 @@ const CompanyStory = () => {
           <div className="relative overflow-hidden rounded-2xl">
             <img
               src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1200"
-              alt="Modern architectural engineering project"
+              alt={t("companyStory.imageAlt")}
+              width="1200"
+              height="800"
+              loading="lazy"
+              decoding="async"
               className="h-[420px] w-full object-cover transition-transform duration-700 hover:scale-105 sm:h-[520px]"
             />
 
-            <div className="absolute inset-0 bg-gradient-to-t from-brand/40 to-transparent" />
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 bg-gradient-to-t from-brand/40 to-transparent"
+            />
           </div>
 
-          {/* Experience Card - Demo Content */}
+          {/* Engineering Identity Card */}
           <div className="absolute -bottom-7 right-4 rounded-2xl bg-accent p-6 text-white shadow-xl sm:-right-5 sm:p-8">
-            <FaBuilding className="mb-3 text-3xl" />
+            <FaBuilding aria-hidden="true" className="mb-3 text-3xl" />
+
             <h3 className="font-heading text-2xl font-extrabold">
-              Engineering
+              {t("companyStory.cardTitle")}
             </h3>
+
             <p className="mt-1 text-sm font-medium text-white/90">
-              Excellence & Reliability
+              {t("companyStory.cardDescription")}
             </p>
           </div>
 
           {/* Decorative Shape */}
-          <div className="absolute -left-5 -top-5 -z-10 h-32 w-32 rounded-2xl border-4 border-accent/30" />
+          <div
+            aria-hidden="true"
+            className="absolute -left-5 -top-5 -z-10 h-32 w-32 rounded-2xl border-4 border-accent/30"
+          />
         </motion.div>
 
         {/* Content Area */}
@@ -58,58 +72,75 @@ const CompanyStory = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
+          {/* Section Label */}
           <span className="font-bold uppercase tracking-[3px] text-accent">
-            About Our Company
+            {t("companyStory.eyebrow")}
           </span>
 
-          <h2 className="mt-5 font-heading text-3xl font-extrabold leading-tight text-brand sm:text-4xl lg:text-5xl">
-            Building a Better
-            <span className="text-accent"> Future Together</span>
+          {/* Main Heading */}
+          <h2
+            id="company-story-heading"
+            className="mt-5 font-heading text-3xl font-extrabold leading-tight text-brand sm:text-4xl lg:text-5xl"
+          >
+            {t("companyStory.headingStart")}
+            <span className="text-accent">
+              {" "}
+              {t("companyStory.headingHighlight")}
+            </span>
           </h2>
 
+          {/* Company Description */}
           <p className="mt-7 leading-8 text-slate-600">
-            SS Engineers & Construction is dedicated to providing professional
-            engineering and construction solutions. Our focus is on thoughtful
-            planning, technical expertise and quality workmanship.
+            {t("companyStory.paragraphOne")}
           </p>
 
           <p className="mt-5 leading-8 text-slate-600">
-            We believe every successful project begins with understanding our
-            clients' needs and ends with delivering reliable results. Our
-            approach combines responsible project management, safety and
-            attention to detail.
+            {t("companyStory.paragraphTwo")}
           </p>
 
-          {/* Highlights */}
-          <div className="mt-8 grid gap-4 sm:grid-cols-2">
-            {highlights.map((item, index) => (
-              <div key={index} className="flex items-start gap-3">
-                <FaCheckCircle className="mt-1 shrink-0 text-lg text-accent" />
-                <span className="text-sm font-semibold text-brand">{item}</span>
-              </div>
+          {/* Company Highlights */}
+          <ul className="mt-8 grid gap-4 sm:grid-cols-2">
+            {highlights.map((item) => (
+              <li key={item} className="flex items-start gap-3">
+                <FaCheckCircle
+                  aria-hidden="true"
+                  className="mt-1 shrink-0 text-lg text-accent"
+                />
+
+                <span className="text-sm font-semibold text-brand">
+                  {t(`companyStory.highlights.${item}`)}
+                </span>
+              </li>
             ))}
-          </div>
+          </ul>
 
           {/* Bottom Info */}
           <div className="mt-10 flex flex-wrap items-center gap-6 border-t border-slate-200 pt-8">
+            {/* Quality Commitment */}
             <div className="flex items-center gap-3">
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-orange-50 text-xl text-accent">
-                <FaAward />
+                <FaAward aria-hidden="true" />
               </div>
+
               <div>
-                <h4 className="font-heading font-extrabold text-brand">
-                  Quality First
-                </h4>
-                <p className="text-xs text-slate-500">In Every Project</p>
+                <h3 className="font-heading font-extrabold text-brand">
+                  {t("companyStory.qualityTitle")}
+                </h3>
+
+                <p className="text-xs text-slate-500">
+                  {t("companyStory.qualitySubtitle")}
+                </p>
               </div>
             </div>
 
+            {/* Contact Link */}
             <Link
               to="/contact"
-              className="inline-flex items-center gap-3 font-bold text-brand transition-colors hover:text-accent"
+              className="inline-flex items-center gap-3 font-bold text-brand transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4"
             >
-              Talk to Our Team
-              <FaArrowRight />
+              {t("companyStory.contactButton")}
+
+              <FaArrowRight aria-hidden="true" />
             </Link>
           </div>
         </motion.div>

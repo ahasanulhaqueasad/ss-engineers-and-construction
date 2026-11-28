@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 
 import "./index.css";
-import "./i18n";
 
 // Public Layout
 import SiteLayout from "./components/layout/SiteLayout";

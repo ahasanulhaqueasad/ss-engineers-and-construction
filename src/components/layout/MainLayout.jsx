@@ -10,17 +10,25 @@ import CTA from "../home/CTA";
 
 const MainLayout = () => {
   return (
-    <>
+    <main id="main-content">
       <Hero />
+
       <TrustStrip />
+
       <AboutPreview />
+
       <ServicesPreview />
+
       <FeaturedProjects />
+
       <WhyChooseUs />
+
       <ProcessSection />
+
       <Testimonials />
+
       <CTA />
-    </>
+    </main>
   );
 };
 

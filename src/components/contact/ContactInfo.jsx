@@ -11,23 +11,26 @@ const contactItems = [
   {
     icon: FaMapMarkerAlt,
     title: "Our Office",
-    details: "Your Company Address",
-    description: "Visit our office for a face-to-face discussion.",
+    details: "Office Address Coming Soon",
+    description: "Our office location will be updated soon.",
     link: "View Location",
+    href: null,
   },
   {
     icon: FaPhoneAlt,
     title: "Call Us",
-    details: "+880 1XXX-XXXXXX",
-    description: "Our team is ready to assist you.",
-    link: "Call Now",
+    details: "Phone Number Coming Soon",
+    description: "Our team is ready to assist with your inquiries.",
+    link: "Contact Us",
+    href: "/request-quote",
   },
   {
     icon: FaEnvelope,
     title: "Email Us",
-    details: "info@yourcompany.com",
-    description: "Send us your project requirements.",
-    link: "Send Email",
+    details: "Email Address Coming Soon",
+    description: "Submit your project requirements through our inquiry form.",
+    link: "Send Inquiry",
+    href: "/request-quote",
   },
   {
     icon: FaClock,
@@ -35,6 +38,7 @@ const contactItems = [
     details: "Saturday – Thursday",
     description: "9:00 AM – 6:00 PM",
     link: "Business Hours",
+    href: null,
   },
 ];
 
@@ -97,10 +101,22 @@ const ContactInfo = () => {
                   {item.description}
                 </p>
 
-                <div className="mt-5 flex items-center gap-2 text-sm font-bold text-accent">
-                  {item.link}
-                  <FaArrowRight className="transition-transform group-hover:translate-x-1" />
-                </div>
+                {item.href && (
+                  <a
+                    href={item.href}
+                    className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-accent"
+                  >
+                    {item.link}
+                    <FaArrowRight className="transition-transform group-hover:translate-x-1" />
+                  </a>
+                )}
+
+                {!item.href && (
+                  <div className="mt-5 flex items-center gap-2 text-sm font-bold text-slate-400">
+                    {item.link}
+                    <FaArrowRight />
+                  </div>
+                )}
               </motion.div>
             );
           })}

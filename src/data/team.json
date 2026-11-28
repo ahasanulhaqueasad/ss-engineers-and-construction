@@ -2,29 +2,29 @@
   {
     "id": 1,
     "name": "John Anderson",
-    "position": "Managing Director",
-    "specialization": "Civil Engineering & Leadership",
+    "position": "managingDirector",
+    "specialization": "civilLeadership",
     "image": "https://i.pravatar.cc/500?img=11"
   },
   {
     "id": 2,
     "name": "Michael Robert",
-    "position": "Senior Civil Engineer",
-    "specialization": "Structural Engineering",
+    "position": "seniorCivilEngineer",
+    "specialization": "structuralEngineering",
     "image": "https://i.pravatar.cc/500?img=12"
   },
   {
     "id": 3,
     "name": "David William",
-    "position": "Project Manager",
-    "specialization": "Construction Management",
+    "position": "projectManager",
+    "specialization": "constructionManagement",
     "image": "https://i.pravatar.cc/500?img=13"
   },
   {
     "id": 4,
     "name": "Sarah Johnson",
-    "position": "Architect",
-    "specialization": "Architectural Design",
+    "position": "architect",
+    "specialization": "architecturalDesign",
     "image": "https://i.pravatar.cc/500?img=44"
   }
 ]

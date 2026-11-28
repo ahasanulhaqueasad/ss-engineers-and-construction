@@ -4,76 +4,417 @@
     "title": "Architectural Design",
     "description": "Modern and functional architectural planning for residential and commercial spaces.",
     "icon": "architecture",
-    "category": "Design"
+    "category": "Design",
+    "overview": "Architectural design focuses on creating functional, comfortable and visually appealing spaces. We plan building layouts by considering the client's requirements, available space and intended use of the property.",
+    "features": [
+      "Residential and commercial building planning",
+      "Floor plan and space layout design",
+      "Building elevation design",
+      "Room arrangement and space optimization",
+      "Functional and aesthetic design considerations"
+    ],
+    "deliverables": [
+      "Architectural floor plans",
+      "Building elevation drawings",
+      "Space planning layouts",
+      "Design drawings based on the agreed scope"
+    ],
+    "process": [
+      "Understand project requirements",
+      "Review site information and client preferences",
+      "Prepare the initial architectural concept",
+      "Develop and revise design drawings",
+      "Finalize drawings according to the agreed scope"
+    ],
+    "faqs": [
+      {
+        "question": "Can I request a residential building design?",
+        "answer": "Yes. Architectural planning can be prepared for residential projects according to the property and your requirements."
+      },
+      {
+        "question": "Can the design be revised?",
+        "answer": "Design revisions can be discussed and agreed upon according to the project scope."
+      }
+    ]
   },
   {
     "id": 2,
     "title": "Structural Design",
     "description": "Safe, durable and efficient structural engineering solutions.",
     "icon": "structure",
-    "category": "Design"
+    "category": "Design",
+    "overview": "Structural design focuses on the strength, stability and durability of buildings. It considers project requirements, site conditions and relevant engineering principles to develop structural drawings and design solutions.",
+    "features": [
+      "Structural planning for buildings",
+      "Foundation design considerations",
+      "Column and beam layout planning",
+      "Slab and roof structural planning",
+      "Structural drawing preparation"
+    ],
+    "deliverables": [
+      "Structural layout drawings",
+      "Foundation drawings",
+      "Column and beam details",
+      "Structural design documentation according to the agreed scope"
+    ],
+    "process": [
+      "Collect architectural drawings and project information",
+      "Review available soil and site information",
+      "Develop the structural design approach",
+      "Prepare structural drawings and details",
+      "Review and finalize the agreed design documents"
+    ],
+    "faqs": [
+      {
+        "question": "Do you provide structural design for residential buildings?",
+        "answer": "Structural design can be discussed for residential and other building projects based on their requirements."
+      },
+      {
+        "question": "Is soil information important for structural design?",
+        "answer": "Yes. Available soil investigation information is important when determining suitable foundation design considerations."
+      }
+    ]
   },
   {
     "id": 3,
     "title": "Civil Construction",
     "description": "Complete construction solutions with a focus on quality and precision.",
     "icon": "construction",
-    "category": "Construction"
+    "category": "Construction",
+    "overview": "Civil construction covers building and infrastructure work from initial planning through execution. Project requirements, drawings, materials and site conditions are considered before work begins.",
+    "features": [
+      "Residential building construction",
+      "Commercial building construction",
+      "Foundation and structural construction work",
+      "Masonry and finishing work",
+      "Construction coordination and supervision"
+    ],
+    "deliverables": [
+      "Construction work according to the agreed scope",
+      "Project execution updates",
+      "Coordination of agreed construction activities",
+      "Work completion and handover coordination"
+    ],
+    "process": [
+      "Discuss project requirements",
+      "Review drawings, site and estimated scope",
+      "Prepare the construction plan and estimate",
+      "Execute agreed construction activities",
+      "Review completed work and coordinate handover"
+    ],
+    "faqs": [
+      {
+        "question": "Do you handle residential construction projects?",
+        "answer": "Residential construction requirements can be discussed based on project size, location and scope."
+      },
+      {
+        "question": "Can I request an estimated construction cost?",
+        "answer": "Yes. A project estimate can be discussed after reviewing the drawings, specifications and work requirements."
+      }
+    ]
   },
   {
     "id": 4,
     "title": "Interior Design",
     "description": "Beautiful, practical and comfortable interior design solutions.",
     "icon": "interior",
-    "category": "Design"
+    "category": "Design",
+    "overview": "Interior design aims to improve the functionality, comfort and appearance of indoor spaces. Design decisions are guided by the purpose of the space, available dimensions and client preferences.",
+    "features": [
+      "Residential interior planning",
+      "Commercial interior planning",
+      "Living room and bedroom design concepts",
+      "Kitchen and bathroom layout planning",
+      "Color, lighting and material suggestions"
+    ],
+    "deliverables": [
+      "Interior layout plans",
+      "Furniture arrangement concepts",
+      "Material and color suggestions",
+      "3D interior visualization where included in the agreed scope"
+    ],
+    "process": [
+      "Discuss design preferences and requirements",
+      "Review room dimensions and site information",
+      "Develop the interior design concept",
+      "Prepare layouts and visual presentations",
+      "Finalize the agreed design"
+    ],
+    "faqs": [
+      {
+        "question": "Can you design a single room?",
+        "answer": "Interior design requirements for an individual room can be discussed separately."
+      },
+      {
+        "question": "Can I share my preferred design style?",
+        "answer": "Yes. You can share reference images, preferred colors and design ideas during the consultation."
+      }
+    ]
   },
   {
     "id": 5,
     "title": "Land Survey",
     "description": "Accurate land surveying and site measurement services.",
     "icon": "survey",
-    "category": "Consultancy"
+    "category": "Consultancy",
+    "overview": "Land surveying involves measuring and documenting land and site information. Survey data can support property planning, boundary understanding and engineering design activities.",
+    "features": [
+      "Land measurement",
+      "Site surveying",
+      "Boundary and dimension data collection",
+      "Level and elevation measurement where required",
+      "Site data preparation for planning"
+    ],
+    "deliverables": [
+      "Survey measurement data",
+      "Site layout information",
+      "Land measurement drawings where included",
+      "Survey documentation according to the agreed scope"
+    ],
+    "process": [
+      "Collect available land documents and requirements",
+      "Plan the site survey",
+      "Conduct field measurements",
+      "Process and review collected information",
+      "Prepare and deliver agreed survey outputs"
+    ],
+    "faqs": [
+      {
+        "question": "Why is a land survey important?",
+        "answer": "Survey information helps understand site dimensions and conditions before planning or construction."
+      },
+      {
+        "question": "Can I request a survey for a building site?",
+        "answer": "Yes. Site survey requirements can be discussed based on the property location and project needs."
+      }
+    ]
   },
   {
     "id": 6,
     "title": "Soil Test",
     "description": "Reliable soil investigation and geotechnical testing services.",
     "icon": "soil",
-    "category": "Consultancy"
+    "category": "Consultancy",
+    "overview": "Soil investigation helps assess ground conditions before construction. The findings can support engineering decisions about foundation requirements and site suitability.",
+    "features": [
+      "Soil investigation planning",
+      "Field soil investigation coordination",
+      "Collection of soil information",
+      "Geotechnical testing coordination",
+      "Review of soil investigation findings"
+    ],
+    "deliverables": [
+      "Soil investigation information",
+      "Geotechnical test results where included",
+      "Soil investigation report according to the agreed scope",
+      "Relevant findings for engineering review"
+    ],
+    "process": [
+      "Discuss site and project requirements",
+      "Plan the soil investigation",
+      "Conduct or coordinate field investigation",
+      "Review available test results",
+      "Prepare and deliver agreed documentation"
+    ],
+    "faqs": [
+      {
+        "question": "Why is soil testing needed before construction?",
+        "answer": "Soil testing provides information about ground conditions that can help engineers assess foundation requirements."
+      },
+      {
+        "question": "Can soil testing be arranged for a residential project?",
+        "answer": "Soil investigation requirements can be discussed according to the project location and site conditions."
+      }
+    ]
   },
   {
     "id": 7,
     "title": "Project Management",
     "description": "Professional project planning, coordination and supervision.",
     "icon": "management",
-    "category": "Management"
+    "category": "Management",
+    "overview": "Project management supports organized construction activities through planning, coordination, progress monitoring and communication. The management approach depends on the agreed project responsibilities.",
+    "features": [
+      "Project planning and scheduling",
+      "Construction activity coordination",
+      "Progress monitoring",
+      "Resource and work coordination",
+      "Project communication and reporting"
+    ],
+    "deliverables": [
+      "Project work plan",
+      "Activity schedule",
+      "Progress updates",
+      "Coordination and supervision reports where agreed"
+    ],
+    "process": [
+      "Understand project goals and responsibilities",
+      "Review project scope and available resources",
+      "Prepare a project plan and schedule",
+      "Coordinate and monitor project activities",
+      "Review progress and report project status"
+    ],
+    "faqs": [
+      {
+        "question": "Can you manage an ongoing construction project?",
+        "answer": "Project management requirements can be discussed after reviewing the current project status and required responsibilities."
+      },
+      {
+        "question": "Do you provide progress updates?",
+        "answer": "Progress reporting and communication arrangements can be agreed upon at the beginning of the project."
+      }
+    ]
   },
   {
     "id": 8,
     "title": "Renovation",
     "description": "Building renovation, remodeling and improvement solutions.",
     "icon": "renovation",
-    "category": "Construction"
+    "category": "Construction",
+    "overview": "Renovation services focus on improving existing buildings and spaces. Work requirements are assessed based on the current condition of the property and the client's improvement goals.",
+    "features": [
+      "Residential building renovation",
+      "Commercial space renovation",
+      "Interior remodeling",
+      "Repair and improvement work",
+      "Space layout improvement"
+    ],
+    "deliverables": [
+      "Renovation work according to the agreed scope",
+      "Proposed layout or improvement plans where required",
+      "Material and work estimates where agreed",
+      "Completed renovation work and handover coordination"
+    ],
+    "process": [
+      "Discuss renovation goals",
+      "Inspect and assess the existing space",
+      "Identify required improvements",
+      "Prepare the work scope and estimate",
+      "Execute and review agreed renovation work"
+    ],
+    "faqs": [
+      {
+        "question": "Can an old building be renovated?",
+        "answer": "Renovation possibilities depend on the existing building condition and the required improvements."
+      },
+      {
+        "question": "Can I renovate only part of my property?",
+        "answer": "Yes. Renovation requirements for selected rooms or specific areas can be discussed."
+      }
+    ]
   },
   {
     "id": 9,
     "title": "Electrical Work",
     "description": "Reliable electrical installation and engineering solutions.",
     "icon": "electrical",
-    "category": "Construction"
+    "category": "Construction",
+    "overview": "Electrical work covers electrical planning and installation requirements for buildings. The scope is determined by the building type, electrical load requirements and applicable safety considerations.",
+    "features": [
+      "Building electrical layout planning",
+      "Lighting and power point planning",
+      "Electrical wiring installation",
+      "Distribution board planning",
+      "Electrical system coordination"
+    ],
+    "deliverables": [
+      "Electrical layout drawings where included",
+      "Lighting and power point layouts",
+      "Installation work according to the agreed scope",
+      "Electrical documentation where agreed"
+    ],
+    "process": [
+      "Review building plans and electrical requirements",
+      "Assess load and installation needs",
+      "Prepare the electrical layout or work plan",
+      "Carry out agreed electrical work",
+      "Review completed work"
+    ],
+    "faqs": [
+      {
+        "question": "Do you provide electrical solutions for new buildings?",
+        "answer": "Electrical planning and installation requirements for new buildings can be discussed based on the project scope."
+      },
+      {
+        "question": "Can electrical work be planned for an existing building?",
+        "answer": "Yes. Existing building electrical requirements can be reviewed before preparing a suitable work scope."
+      }
+    ]
   },
   {
     "id": 10,
     "title": "Plumbing Work",
     "description": "Efficient plumbing, drainage and water supply solutions.",
     "icon": "plumbing",
-    "category": "Construction"
+    "category": "Construction",
+    "overview": "Plumbing work covers water supply, drainage and related building systems. Planning and installation requirements are considered according to the building layout and intended use.",
+    "features": [
+      "Water supply system planning",
+      "Drainage layout planning",
+      "Bathroom and kitchen plumbing",
+      "Pipe installation and fitting",
+      "Plumbing repair and improvement work"
+    ],
+    "deliverables": [
+      "Plumbing layout drawings where included",
+      "Water supply and drainage arrangements",
+      "Installation work according to the agreed scope",
+      "Plumbing documentation where agreed"
+    ],
+    "process": [
+      "Review building layout and plumbing requirements",
+      "Identify water supply and drainage needs",
+      "Prepare the plumbing work plan",
+      "Complete agreed installation activities",
+      "Review the completed plumbing work"
+    ],
+    "faqs": [
+      {
+        "question": "Can you provide plumbing work for residential buildings?",
+        "answer": "Residential plumbing requirements can be discussed according to the building layout and project scope."
+      },
+      {
+        "question": "Do you handle drainage planning?",
+        "answer": "Drainage layout planning can be included where it is part of the agreed plumbing scope."
+      }
+    ]
   },
   {
     "id": 11,
     "title": "Estimation & Costing",
     "description": "Detailed construction cost estimation and budgeting services.",
     "icon": "estimation",
-    "category": "Consultancy"
+    "category": "Consultancy",
+    "overview": "Estimation and costing help clients understand the expected construction expenses before starting a project. Estimates are prepared using available drawings, specifications, quantities and applicable rates.",
+    "features": [
+      "Construction quantity estimation",
+      "Material quantity calculation",
+      "Labor cost estimation",
+      "Construction budget preparation",
+      "Cost breakdown and review"
+    ],
+    "deliverables": [
+      "Estimated quantity schedule",
+      "Material quantity breakdown",
+      "Labor and cost estimates",
+      "Project budget documentation according to the agreed scope"
+    ],
+    "process": [
+      "Collect drawings and project specifications",
+      "Review project requirements",
+      "Calculate required quantities",
+      "Prepare estimated costs and budget details",
+      "Review and deliver the estimate"
+    ],
+    "faqs": [
+      {
+        "question": "Can I get an estimate before starting construction?",
+        "answer": "Yes. An estimate can be prepared after reviewing the available drawings and project specifications."
+      },
+      {
+        "question": "Can the estimated cost change?",
+        "answer": "Actual costs may vary due to changes in design, material specifications, quantities and market rates."
+      }
+    ]
   }
 ]

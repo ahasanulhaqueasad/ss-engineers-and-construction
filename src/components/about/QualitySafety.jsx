@@ -1,4 +1,6 @@
 import { motion } from "motion/react";
+import { Link } from "react-router-dom";
+
 import {
   FaShieldAlt,
   FaHardHat,
@@ -8,58 +10,67 @@ import {
   FaLeaf,
   FaArrowRight,
 } from "react-icons/fa";
-import { Link } from "react-router-dom";
 
 const policies = [
   {
     id: 1,
-    title: "Quality Assurance",
+    title: "Quality-Focused Work",
     description:
-      "Maintaining quality standards through careful planning, material selection and workmanship.",
+      "We emphasize careful planning, attention to detail, and quality-focused practices throughout project activities.",
     icon: FaCheckCircle,
   },
   {
     id: 2,
     title: "Workplace Safety",
     description:
-      "Promoting safe working practices and reducing risks throughout project activities.",
+      "We recognize the importance of safety awareness and responsible practices at every project site.",
     icon: FaHardHat,
   },
   {
     id: 3,
-    title: "Technical Inspection",
+    title: "Project Inspection",
     description:
-      "Supporting project quality through appropriate inspection and technical supervision.",
+      "Regular review and inspection help identify issues and maintain alignment with project requirements.",
     icon: FaClipboardCheck,
   },
   {
     id: 4,
-    title: "Equipment & Materials",
+    title: "Material Consideration",
     description:
-      "Emphasizing responsible handling and appropriate use of construction materials and equipment.",
+      "We recognize the importance of selecting suitable materials based on project specifications and requirements.",
     icon: FaTools,
   },
   {
     id: 5,
-    title: "Environmental Responsibility",
+    title: "Environmental Awareness",
     description:
-      "Encouraging responsible construction practices and awareness of environmental impact.",
+      "We value responsible resource use and consideration of environmental factors during project planning.",
     icon: FaLeaf,
   },
   {
     id: 6,
     title: "Continuous Improvement",
     description:
-      "Learning from every project and improving our processes, standards and performance.",
+      "We believe in learning, reviewing our approach, and improving how engineering solutions are delivered.",
     icon: FaShieldAlt,
   },
 ];
 
+const commitments = [
+  "Quality-focused project planning and execution",
+  "Safety awareness and responsible work practices",
+  "Technical review and project coordination",
+  "Continuous learning and improvement",
+];
+
 const QualitySafety = () => {
   return (
-    <section className="overflow-hidden bg-surface px-5 py-20 lg:px-8 lg:py-28">
+    <section
+      aria-labelledby="quality-safety-heading"
+      className="overflow-hidden bg-surface px-5 py-20 lg:px-8 lg:py-28"
+    >
       <div className="mx-auto max-w-7xl">
-        {/* Heading */}
+        {/* Section Heading */}
         <motion.div
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -68,17 +79,19 @@ const QualitySafety = () => {
           className="mx-auto mb-16 max-w-3xl text-center"
         >
           <span className="font-bold uppercase tracking-[3px] text-accent">
-            Quality & Safety Commitment
+            Our Standards
           </span>
 
-          <h2 className="mt-4 font-heading text-3xl font-extrabold text-brand sm:text-4xl lg:text-5xl">
-            Building with Quality,
-            <span className="text-accent"> Working with Safety</span>
+          <h2
+            id="quality-safety-heading"
+            className="mt-4 font-heading text-3xl font-extrabold text-brand sm:text-4xl lg:text-5xl"
+          >
+            Quality & <span className="text-accent">Safety Commitment</span>
           </h2>
 
           <p className="mt-5 leading-8 text-slate-600">
-            Quality and safety are important considerations in every stage of
-            engineering and construction.
+            We value quality-focused planning, safety awareness, and responsible
+            project practices in engineering and construction.
           </p>
         </motion.div>
 
@@ -95,22 +108,28 @@ const QualitySafety = () => {
             <div className="overflow-hidden rounded-2xl">
               <img
                 src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1200"
-                alt="Construction workers following safety practices"
+                alt="Construction professionals working at a project site"
+                width="1200"
+                height="800"
+                loading="lazy"
+                decoding="async"
                 className="h-[420px] w-full object-cover transition-transform duration-700 hover:scale-105 sm:h-[500px]"
               />
             </div>
 
+            {/* Safety Badge */}
             <div className="absolute -bottom-6 -right-3 flex items-center gap-4 rounded-2xl bg-brand p-6 text-white shadow-xl sm:-right-6">
               <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-accent text-2xl">
-                <FaShieldAlt />
+                <FaShieldAlt aria-hidden="true" />
               </div>
 
               <div>
                 <h3 className="font-heading text-lg font-extrabold">
-                  Safety First
+                  Safety Awareness
                 </h3>
+
                 <p className="mt-1 text-xs text-slate-300">
-                  A Responsible Approach
+                  Responsible Work Practices
                 </p>
               </div>
             </div>
@@ -124,42 +143,45 @@ const QualitySafety = () => {
             transition={{ duration: 0.7 }}
           >
             <h3 className="font-heading text-2xl font-extrabold text-brand sm:text-3xl">
-              Our Commitment to Better Construction
+              Building with Care, Planning with Responsibility
             </h3>
 
             <p className="mt-6 leading-8 text-slate-600">
-              We believe dependable construction requires thoughtful planning,
-              responsible execution and attention to quality and safety at every
-              stage.
+              Every engineering and construction project requires thoughtful
+              planning, technical consideration, and attention to detail. We
+              recognize that quality begins with understanding project
+              requirements and choosing suitable approaches.
             </p>
 
             <p className="mt-4 leading-8 text-slate-600">
-              Our approach emphasizes technical supervision, responsible
-              material use, workplace awareness and continuous improvement.
+              Safety awareness, effective coordination, and responsible
+              decision-making are important considerations throughout project
+              planning and execution.
             </p>
 
-            <div className="mt-8 space-y-4">
-              {[
-                "Quality-focused project execution",
-                "Responsible workplace safety practices",
-                "Technical supervision and inspection",
-                "Continuous improvement and accountability",
-              ].map((item, index) => (
-                <div key={index} className="flex items-center gap-3">
-                  <FaCheckCircle className="shrink-0 text-lg text-accent" />
+            {/* Commitments */}
+            <ul className="mt-8 space-y-4">
+              {commitments.map((item) => (
+                <li key={item} className="flex items-center gap-3">
+                  <FaCheckCircle
+                    aria-hidden="true"
+                    className="shrink-0 text-lg text-accent"
+                  />
+
                   <span className="text-sm font-semibold text-brand">
                     {item}
                   </span>
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
 
+            {/* Contact CTA */}
             <Link
               to="/contact"
-              className="mt-9 inline-flex items-center gap-3 rounded-lg bg-brand px-7 py-4 font-bold text-white transition-all hover:bg-accent"
+              className="mt-9 inline-flex items-center gap-3 rounded-lg bg-brand px-7 py-4 font-bold text-white transition-all hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4"
             >
               Discuss Your Project
-              <FaArrowRight />
+              <FaArrowRight aria-hidden="true" />
             </Link>
           </motion.div>
         </div>
@@ -170,26 +192,32 @@ const QualitySafety = () => {
             const Icon = policy.icon;
 
             return (
-              <motion.div
+              <motion.article
                 key={policy.id}
                 initial={{ opacity: 0, y: 25 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.1,
+                }}
                 className="group rounded-2xl border border-slate-200 bg-white p-7 transition-all duration-300 hover:-translate-y-2 hover:border-accent/40 hover:shadow-xl"
               >
+                {/* Icon */}
                 <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-orange-50 text-2xl text-accent transition-all duration-300 group-hover:bg-accent group-hover:text-white">
-                  <Icon />
+                  <Icon aria-hidden="true" />
                 </div>
 
-                <h4 className="mt-6 font-heading text-lg font-extrabold text-brand">
+                {/* Title */}
+                <h3 className="mt-6 font-heading text-lg font-extrabold text-brand">
                   {policy.title}
-                </h4>
+                </h3>
 
+                {/* Description */}
                 <p className="mt-3 text-sm leading-7 text-slate-500">
                   {policy.description}
                 </p>
-              </motion.div>
+              </motion.article>
             );
           })}
         </div>

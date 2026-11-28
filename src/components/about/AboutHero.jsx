@@ -1,12 +1,17 @@
 import { motion } from "motion/react";
 import { Link } from "react-router-dom";
+
 import { FaHome, FaChevronRight, FaArrowRight } from "react-icons/fa";
 
 const AboutHero = () => {
   return (
-    <section className="relative flex min-h-[480px] items-center overflow-hidden bg-brand px-5 py-24 lg:min-h-[560px] lg:px-8">
+    <section
+      aria-labelledby="about-hero-heading"
+      className="relative flex min-h-[480px] items-center overflow-hidden bg-brand px-5 py-24 lg:min-h-[560px] lg:px-8"
+    >
       {/* Background Image */}
       <div
+        aria-hidden="true"
         className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage:
@@ -15,11 +20,21 @@ const AboutHero = () => {
       />
 
       {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F33]/95 via-[#102A43]/85 to-[#102A43]/50" />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-gradient-to-r from-[#0B1F33]/95 via-[#102A43]/85 to-[#102A43]/50"
+      />
 
       {/* Decorative Shapes */}
-      <div className="absolute -right-24 -top-24 h-80 w-80 rounded-full border-[40px] border-white/5" />
-      <div className="absolute -bottom-40 right-1/4 h-96 w-96 rounded-full border-[50px] border-accent/10" />
+      <div
+        aria-hidden="true"
+        className="absolute -right-24 -top-24 h-80 w-80 rounded-full border-[40px] border-white/5"
+      />
+
+      <div
+        aria-hidden="true"
+        className="absolute -bottom-40 right-1/4 h-96 w-96 rounded-full border-[50px] border-accent/10"
+      />
 
       {/* Content */}
       <div className="relative mx-auto w-full max-w-7xl">
@@ -30,55 +45,70 @@ const AboutHero = () => {
           className="max-w-3xl"
         >
           {/* Breadcrumb */}
-          <div className="mb-8 flex flex-wrap items-center gap-3 text-sm text-slate-300">
-            <Link
-              to="/"
-              className="flex items-center gap-2 transition-colors hover:text-accent"
-            >
-              <FaHome />
-              Home
-            </Link>
+          <nav aria-label="Breadcrumb" className="mb-8">
+            <ol className="flex flex-wrap items-center gap-3 text-sm text-slate-300">
+              <li>
+                <Link
+                  to="/"
+                  className="inline-flex items-center gap-2 transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand"
+                >
+                  <FaHome aria-hidden="true" />
+                  Home
+                </Link>
+              </li>
 
-            <FaChevronRight className="text-xs text-accent" />
+              <li aria-hidden="true">
+                <FaChevronRight className="text-xs text-accent" />
+              </li>
 
-            <span className="font-semibold text-accent">About Us</span>
-          </div>
+              <li>
+                <span aria-current="page" className="font-semibold text-accent">
+                  About Us
+                </span>
+              </li>
+            </ol>
+          </nav>
 
           {/* Badge */}
           <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/10 px-5 py-2 text-sm font-semibold text-orange-300 backdrop-blur-sm">
-            <span className="h-2 w-2 rounded-full bg-accent" />
+            <span
+              aria-hidden="true"
+              className="h-2 w-2 rounded-full bg-accent"
+            />
             Who We Are
           </div>
 
-          {/* Heading */}
-          <h1 className="font-heading text-4xl font-extrabold leading-tight text-white sm:text-5xl lg:text-7xl">
-            Engineering
-            <span className="block text-accent">Excellence</span>
-            Building Trust.
+          {/* Main Heading */}
+          <h1
+            id="about-hero-heading"
+            className="font-heading text-4xl font-extrabold leading-tight text-white sm:text-5xl lg:text-7xl"
+          >
+            Building Trust Through
+            <span className="block text-accent">Engineering Excellence</span>&
+            Innovation
           </h1>
 
           {/* Description */}
           <p className="mt-7 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
-            Discover the people, passion and engineering expertise behind SS
-            Engineers & Construction. We are committed to building reliable
-            spaces and delivering quality construction solutions.
+            Discover SS Engineers & Construction and our approach to delivering
+            thoughtful engineering, design, and construction solutions.
           </p>
 
-          {/* CTA */}
+          {/* CTA Buttons */}
           <div className="mt-9 flex flex-wrap gap-4">
             <Link
               to="/services"
-              className="inline-flex items-center gap-3 rounded-lg bg-accent px-7 py-4 font-bold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-orange-500"
+              className="inline-flex items-center gap-3 rounded-lg bg-accent px-7 py-4 font-bold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-orange-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand"
             >
               Explore Our Services
-              <FaArrowRight />
+              <FaArrowRight aria-hidden="true" />
             </Link>
 
             <Link
               to="/contact"
-              className="inline-flex items-center rounded-lg border border-white/30 px-7 py-4 font-bold text-white transition-all duration-300 hover:bg-white hover:text-brand"
+              className="inline-flex items-center rounded-lg border border-white/30 px-7 py-4 font-bold text-white transition-all duration-300 hover:bg-white hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand"
             >
-              Contact Our Team
+              Contact Us
             </Link>
           </div>
         </motion.div>

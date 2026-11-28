@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "motion/react";
+
 import {
   FaUser,
   FaPhoneAlt,
@@ -18,6 +19,14 @@ const initialFormData = {
   email: "",
   service: "",
   message: "",
+};
+
+const normalizePhone = (phone) => phone.replace(/[\s-]/g, "");
+
+const isValidBangladeshiPhone = (phone) => {
+  const normalized = normalizePhone(phone);
+
+  return /^(?:\+8801|8801|01)[3-9]\d{8}$/.test(normalized);
 };
 
 const ContactForm = () => {
@@ -48,15 +57,13 @@ const ContactForm = () => {
 
     if (!formData.phone.trim()) {
       newErrors.phone = "Please enter your phone number.";
-    } else if (
-      !/^(?:\+?8801|01)[3-9]\d{8}$/.test(formData.phone.replace(/[\s-]/g, ""))
-    ) {
+    } else if (!isValidBangladeshiPhone(formData.phone)) {
       newErrors.phone = "Please enter a valid Bangladeshi phone number.";
     }
 
     if (!formData.email.trim()) {
       newErrors.email = "Please enter your email address.";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
       newErrors.email = "Please enter a valid email address.";
     }
 
@@ -92,7 +99,12 @@ const ContactForm = () => {
 
   const renderError = (field) =>
     errors[field] ? (
-      <p className="mt-1.5 text-xs font-medium text-red-500">{errors[field]}</p>
+      <p
+        id={`contact-${field}-error`}
+        className="mt-1.5 text-xs font-medium text-red-500"
+      >
+        {errors[field]}
+      </p>
     ) : null;
 
   return (
@@ -157,13 +169,14 @@ const ContactForm = () => {
           {isSubmitted && (
             <div
               role="status"
+              aria-live="polite"
               className="mb-6 flex items-start gap-3 rounded-xl border border-green-200 bg-green-50 p-4"
             >
               <FaCheckCircle className="mt-0.5 shrink-0 text-green-600" />
 
               <div>
                 <p className="text-sm font-bold text-green-800">
-                  Message form completed!
+                  Form validation completed!
                 </p>
 
                 <p className="mt-1 text-xs leading-5 text-green-700">
@@ -185,11 +198,15 @@ const ContactForm = () => {
               </label>
 
               <div className="relative">
-                <FaUser className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+                <FaUser
+                  aria-hidden="true"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+                />
 
                 <input
                   id="contact-fullName"
                   type="text"
+                  autoComplete="name"
                   value={formData.fullName}
                   onChange={(event) =>
                     updateField("fullName", event.target.value)
@@ -217,11 +234,15 @@ const ContactForm = () => {
                 </label>
 
                 <div className="relative">
-                  <FaPhoneAlt className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+                  <FaPhoneAlt
+                    aria-hidden="true"
+                    className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+                  />
 
                   <input
                     id="contact-phone"
                     type="tel"
+                    autoComplete="tel"
                     value={formData.phone}
                     onChange={(event) =>
                       updateField("phone", event.target.value)
@@ -229,6 +250,9 @@ const ContactForm = () => {
                     placeholder="+880 1XXX-XXXXXX"
                     className={inputClass}
                     aria-invalid={Boolean(errors.phone)}
+                    aria-describedby={
+                      errors.phone ? "contact-phone-error" : undefined
+                    }
                   />
                 </div>
 
@@ -244,11 +268,15 @@ const ContactForm = () => {
                 </label>
 
                 <div className="relative">
-                  <FaEnvelope className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+                  <FaEnvelope
+                    aria-hidden="true"
+                    className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+                  />
 
                   <input
                     id="contact-email"
                     type="email"
+                    autoComplete="email"
                     value={formData.email}
                     onChange={(event) =>
                       updateField("email", event.target.value)
@@ -256,6 +284,9 @@ const ContactForm = () => {
                     placeholder="you@example.com"
                     className={inputClass}
                     aria-invalid={Boolean(errors.email)}
+                    aria-describedby={
+                      errors.email ? "contact-email-error" : undefined
+                    }
                   />
                 </div>
 
@@ -273,7 +304,10 @@ const ContactForm = () => {
               </label>
 
               <div className="relative">
-                <FaBuilding className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+                <FaBuilding
+                  aria-hidden="true"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+                />
 
                 <select
                   id="contact-service"
@@ -283,6 +317,9 @@ const ContactForm = () => {
                   }
                   className={`${inputClass} appearance-none text-slate-600`}
                   aria-invalid={Boolean(errors.service)}
+                  aria-describedby={
+                    errors.service ? "contact-service-error" : undefined
+                  }
                 >
                   <option value="">Select a service</option>
 
@@ -307,7 +344,10 @@ const ContactForm = () => {
               </label>
 
               <div className="relative">
-                <FaCommentDots className="absolute left-4 top-4 text-slate-400" />
+                <FaCommentDots
+                  aria-hidden="true"
+                  className="absolute left-4 top-4 text-slate-400"
+                />
 
                 <textarea
                   id="contact-message"
@@ -319,6 +359,9 @@ const ContactForm = () => {
                   placeholder="Tell us about your project..."
                   className={`${inputClass} resize-none`}
                   aria-invalid={Boolean(errors.message)}
+                  aria-describedby={
+                    errors.message ? "contact-message-error" : undefined
+                  }
                 />
               </div>
 
@@ -328,10 +371,10 @@ const ContactForm = () => {
             {/* Submit */}
             <button
               type="submit"
-              className="flex w-full items-center justify-center gap-3 rounded-lg bg-accent px-6 py-4 font-bold text-white shadow-lg transition-all hover:-translate-y-1 hover:bg-orange-600"
+              className="flex w-full items-center justify-center gap-3 rounded-lg bg-accent px-6 py-4 font-bold text-white shadow-lg transition-all hover:-translate-y-1 hover:bg-orange-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4"
             >
               Send Message
-              <FaPaperPlane />
+              <FaPaperPlane aria-hidden="true" />
             </button>
 
             <p className="text-center text-xs leading-5 text-slate-400">

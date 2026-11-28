@@ -7,62 +7,73 @@ import {
   FaEnvelope,
   FaPhoneAlt,
   FaArrowLeft,
+  FaCookieBite,
+  FaShareAlt,
 } from "react-icons/fa";
+
+const COMPANY_PHONE = "01838041204";
+const COMPANY_EMAIL = "ahasanulhaque204@gmail.com";
 
 const sections = [
   {
     icon: FaUser,
     title: "1. Information We May Collect",
     content:
-      "When you contact us or submit a project inquiry, we may collect your name, phone number, email address, company name, address, project location, service requirements, estimated budget and other information you choose to provide.",
+      "When you contact us or prepare a project inquiry, you may provide personal and project-related information such as your name, phone number, email address, company name, address, project location, service requirements and estimated budget. Please provide only information relevant to your inquiry.",
   },
   {
     icon: FaFileAlt,
     title: "2. Project Documents and Attachments",
     content:
-      "You may provide architectural drawings, structural drawings, site photographs and other project-related documents. These materials should only be used for reviewing your requirements, preparing estimates and communicating about your project.",
+      "You may select architectural drawings, structural drawings, site photographs and other project-related documents when completing our quote form. In the current website version, selected files are not automatically uploaded or attached to WhatsApp or email messages. The inquiry message may include their file names, so you should attach the documents yourself when sending your message if required.",
   },
   {
     icon: FaEnvelope,
-    title: "3. How We May Use Your Information",
+    title: "3. How We Use Your Information",
     content:
-      "Information you provide may be used to respond to inquiries, discuss project requirements, prepare quotations, communicate about services and manage client relationships. We do not intend to use your information for unrelated purposes.",
+      "Information you choose to share may be used to respond to your inquiry, understand your project requirements, discuss our services, prepare quotations and communicate with you about potential or ongoing projects.",
+  },
+  {
+    icon: FaShareAlt,
+    title: "4. How Inquiry Information Is Sent",
+    content:
+      "Our current quote form allows you to open WhatsApp or your email application with a prepared inquiry message. Your information is sent only when you complete and send that message through the selected service. The website does not currently submit quote inquiries to its own backend database. WhatsApp and email services process information according to their respective privacy policies and terms.",
   },
   {
     icon: FaLock,
-    title: "4. Data Protection",
+    title: "5. Data Protection",
     content:
-      "We intend to apply appropriate technical and organizational measures to protect personal information and project documents. The actual security measures, storage providers and access controls must be confirmed and implemented before this website is launched.",
-  },
-  {
-    icon: FaShieldAlt,
-    title: "5. Sharing of Information",
-    content:
-      "Personal information should only be shared with authorized personnel or service providers when necessary to operate the website or respond to your request. We do not intend to sell personal information to third parties.",
-  },
-  {
-    icon: FaFileAlt,
-    title: "6. Data Retention",
-    content:
-      "Information may be retained for as long as necessary to respond to inquiries, manage projects, maintain business records or meet applicable legal obligations. A final retention and deletion policy should be confirmed by the company.",
+      "We take privacy seriously and aim to handle information shared with us responsibly. Once information reaches us through WhatsApp or email, its storage, access and protection depend on the systems and practices used to manage those communications. Please avoid sending passwords, financial account credentials or other highly sensitive information through the inquiry form.",
   },
   {
     icon: FaUser,
-    title: "7. Your Choices and Requests",
+    title: "6. Sharing and Disclosure",
     content:
-      "You may contact the company to request access to, correction of or deletion of personal information you have provided, subject to applicable legal and business recordkeeping requirements.",
+      "We do not intend to sell your personal information. Information may be shared with relevant personnel or service providers when reasonably necessary to respond to your inquiry or provide requested services. Information may also be disclosed where required by applicable law.",
   },
   {
-    icon: FaLock,
-    title: "8. Cookies and Website Analytics",
+    icon: FaFileAlt,
+    title: "7. Data Retention",
     content:
-      "The website may use cookies or analytics technologies to understand website usage and improve the visitor experience. Any analytics or tracking tools must be disclosed and configured according to applicable requirements before launch.",
+      "Information received through WhatsApp or email may be retained for as long as necessary to respond to inquiries, manage business communications, handle projects or meet applicable legal obligations. You may contact us to request the deletion of information, subject to applicable legal and business recordkeeping requirements.",
   },
   {
-    icon: FaEnvelope,
-    title: "9. Changes to This Policy",
+    icon: FaCookieBite,
+    title: "8. Cookies and Third-Party Services",
     content:
-      "This policy may be updated when website features, company practices or applicable requirements change. The latest version should be published on this page with its updated effective date.",
+      "Your browser and website hosting provider may use technical processes necessary to operate and secure the website. If analytics, embedded content or other third-party services are introduced, their data practices should be reviewed and disclosed as applicable. Third-party services you choose to use, including WhatsApp and email providers, are governed by their own privacy policies.",
+  },
+  {
+    icon: FaShieldAlt,
+    title: "9. Your Privacy Requests",
+    content:
+      "You may contact us to ask about personal information you have shared with the company or to request correction or deletion where applicable. We may need to retain certain information to meet legal obligations or resolve business matters.",
+  },
+  {
+    icon: FaFileAlt,
+    title: "10. Changes to This Policy",
+    content:
+      "We may update this Privacy Policy when our website, services or information-handling practices change. Any revised version will be published on this page with an updated date.",
   },
 ];
 
@@ -96,12 +107,12 @@ const PrivacyPolicyPage = () => {
           </h1>
 
           <p className="max-w-2xl text-sm leading-7 text-white/70 md:text-base">
-            Your privacy matters to us. This page explains how information
-            shared through our website may be collected, used and protected.
+            We respect your privacy and are committed to handling the
+            information you share with care and transparency.
           </p>
 
           <p className="mt-6 text-xs text-white/50">
-            Draft policy · Effective date to be confirmed
+            Last updated: November 28, 2026
           </p>
         </div>
       </section>
@@ -132,20 +143,19 @@ const PrivacyPolicyPage = () => {
           <div className="space-y-5">
             <div className="rounded-2xl border border-accent/20 bg-accent/5 p-5">
               <p className="text-sm leading-7 text-brand">
-                <strong>Important:</strong> This is a draft website policy
-                prepared for the project frontend. The company must review and
-                approve the final wording, contact details, data practices and
-                applicable legal requirements before publishing it as an
-                official policy.
+                <strong>Important:</strong> When using our quote form, you
+                choose whether to continue through WhatsApp or email. Review the
+                prepared message before sending it. Please do not include
+                information you do not want to share.
               </p>
             </div>
 
             <div className="rounded-2xl border border-border bg-white p-6 md:p-8">
               <p className="mb-8 text-sm leading-7 text-muted">
-                SS Engineers & Construction values the privacy of visitors,
-                prospective clients and customers. This draft describes the
-                intended approach to handling information submitted through the
-                website.
+                SS Engineers & Construction values the privacy of website
+                visitors, prospective clients and customers. This policy
+                explains how information you choose to provide may be handled
+                when you contact us or inquire about our services.
               </p>
 
               <div className="space-y-9">
@@ -168,7 +178,7 @@ const PrivacyPolicyPage = () => {
                         </h2>
                       </div>
 
-                      <p className="pl-0 text-sm leading-8 text-muted sm:pl-[52px]">
+                      <p className="text-sm leading-8 text-muted sm:pl-[52px]">
                         {section.content}
                       </p>
                     </article>
@@ -184,19 +194,28 @@ const PrivacyPolicyPage = () => {
                 <h2 className="text-xl font-bold">Privacy Questions?</h2>
               </div>
 
-              <p className="mb-5 text-sm leading-7 text-white/70">
-                If you have a question about this policy or the information you
-                have shared, please contact the company using its verified
-                contact details.
+              <p className="mb-6 text-sm leading-7 text-white/70">
+                If you have questions about this Privacy Policy or information
+                you have shared with us, contact our team directly.
               </p>
 
-              <Link
-                to="/contact"
-                className="inline-flex items-center gap-2 rounded-xl bg-accent px-5 py-3 text-sm font-bold text-white transition hover:bg-white hover:text-brand"
-              >
-                <FaPhoneAlt />
-                Contact Us
-              </Link>
+              <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+                <a
+                  href={`mailto:${COMPANY_EMAIL}`}
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-accent px-5 py-3 text-sm font-bold text-white transition hover:bg-white hover:text-brand"
+                >
+                  <FaEnvelope />
+                  Email Us
+                </a>
+
+                <a
+                  href={`tel:${COMPANY_PHONE}`}
+                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 px-5 py-3 text-sm font-bold text-white transition hover:bg-white hover:text-brand"
+                >
+                  <FaPhoneAlt />
+                  Call Us
+                </a>
+              </div>
             </div>
           </div>
         </div>

@@ -10,68 +10,83 @@ import {
   FaShieldAlt,
   FaEnvelope,
   FaArrowLeft,
+  FaGlobe,
 } from "react-icons/fa";
+
+const COMPANY_EMAIL = "ahasanulhaque204@gmail.com";
 
 const sections = [
   {
     icon: FaUserCheck,
     title: "1. Acceptance of Terms",
     content:
-      "By accessing or using this website, you agree to follow these terms and conditions. If you do not agree with any part of these terms, please discontinue using the website.",
+      "By accessing or using the SS Engineers & Construction website, you agree to these Terms & Conditions. If you do not agree with these terms, please discontinue using the website.",
+  },
+  {
+    icon: FaGlobe,
+    title: "2. Website Information",
+    content:
+      "The information provided on this website is intended for general informational purposes. Service descriptions, images, project details and other content may be updated or changed without prior notice. Please contact us to confirm current service availability and specific requirements.",
   },
   {
     icon: FaTools,
-    title: "2. Services and Website Information",
+    title: "3. Services",
     content:
-      "Information about architectural design, structural design, construction, interior design, surveying and other services is provided for general informational purposes. Actual service availability, scope and specifications will be confirmed through direct communication and a formal agreement.",
+      "Our website may provide information about architectural design, structural design, land surveying, soil testing, construction and related engineering services. The actual scope, specifications and availability of any service will be determined through direct communication and a separate project agreement where applicable.",
   },
   {
     icon: FaFileContract,
-    title: "3. Inquiries and Quotations",
+    title: "4. Inquiries and Quotations",
     content:
-      "Submitting an inquiry or quotation request does not create a binding contract. Any quotation, estimated cost, project timeline or proposed scope is subject to review and written confirmation by the company.",
+      "Submitting an inquiry or quote request does not create a binding contract or guarantee that a project will be accepted. Any quotation, estimated cost, project timeline or proposed scope is subject to review and written confirmation by the company.",
   },
   {
     icon: FaMoneyBillWave,
-    title: "4. Pricing and Payments",
+    title: "5. Pricing and Payments",
     content:
-      "Project costs, payment schedules, taxes, additional charges and payment methods will be communicated separately. The applicable payment terms will be those agreed upon in the final written contract or project agreement.",
+      "Project prices, payment schedules, taxes, additional charges and accepted payment methods will be discussed separately. The payment terms agreed upon in the relevant written project agreement will apply.",
   },
   {
     icon: FaHardHat,
-    title: "5. Project Execution",
+    title: "6. Project Execution",
     content:
-      "Construction and engineering projects may depend on site conditions, approvals, material availability, weather and other external factors. Project responsibilities, timelines, specifications and changes must be documented in the relevant agreement.",
-  },
-  {
-    icon: FaCopyright,
-    title: "6. Intellectual Property",
-    content:
-      "Website text, branding, graphics, design elements and other original content may be protected by applicable intellectual property laws. You may not reproduce, distribute or commercially use protected materials without appropriate permission.",
+      "Engineering and construction projects may be affected by site conditions, regulatory approvals, material availability, weather and other circumstances. Project responsibilities, specifications, timelines and any changes should be agreed upon and documented separately.",
   },
   {
     icon: FaUserCheck,
     title: "7. User Responsibilities",
     content:
-      "You agree to provide accurate information when submitting inquiries and to avoid uploading unlawful, harmful or unauthorized materials. You must not attempt to disrupt, misuse or gain unauthorized access to the website or its systems.",
+      "You agree to provide accurate information when contacting us or submitting project inquiries. You must not use the website to submit unlawful, harmful or unauthorized content, interfere with its operation, or attempt to gain unauthorized access to its systems.",
+  },
+  {
+    icon: FaCopyright,
+    title: "8. Intellectual Property",
+    content:
+      "Unless otherwise stated, the website's original text, branding, graphics, layout and other content are owned by or used with permission by the relevant rights holders. You may not reproduce, distribute or commercially use protected content without appropriate authorization.",
   },
   {
     icon: FaExclamationTriangle,
-    title: "8. Limitation of Liability",
+    title: "9. Disclaimer and Limitation of Liability",
     content:
-      "Website information is provided for general guidance and may change. It should not be treated as a substitute for a project-specific engineering assessment, professional advice or a signed agreement. Any applicable limitation of liability must be reviewed under relevant law.",
+      "Website content is provided for general information and should not be treated as a substitute for a site-specific engineering assessment, professional advice or a signed project agreement. We aim to keep information accurate but do not guarantee that all website content will always be complete, current or error-free. Nothing in these terms excludes liability where such exclusion is prohibited by applicable law.",
   },
   {
     icon: FaShieldAlt,
-    title: "9. Privacy",
+    title: "10. Privacy",
     content:
-      "Information submitted through this website may be handled according to the company's Privacy Policy. Please review that policy before sharing personal or project-related information.",
+      "Information you choose to share with us may be handled as described in our Privacy Policy. Please review that policy before submitting personal or project-related information through our website.",
+  },
+  {
+    icon: FaTools,
+    title: "11. External Links and Services",
+    content:
+      "Our website may link to third-party websites or services, including WhatsApp and email applications. These services are operated independently and are subject to their own terms and privacy policies. We are not responsible for the content or practices of third-party websites and services.",
   },
   {
     icon: FaFileContract,
-    title: "10. Changes to These Terms",
+    title: "12. Changes to These Terms",
     content:
-      "The company may update these terms when website features or business practices change. Updated terms should be published on this page with the appropriate effective date.",
+      "We may revise these Terms & Conditions when our website, services or business practices change. Updated terms will be published on this page. Continued use of the website after changes are published constitutes acceptance of the revised terms, to the extent permitted by applicable law.",
   },
 ];
 
@@ -105,12 +120,12 @@ const TermsPage = () => {
           </h1>
 
           <p className="max-w-2xl text-sm leading-7 text-white/70 md:text-base">
-            Please read these terms carefully before using our website or
-            submitting a project inquiry.
+            Please review these terms before accessing our website or submitting
+            a project inquiry.
           </p>
 
           <p className="mt-6 text-xs text-white/50">
-            Draft terms · Effective date to be confirmed
+            Last updated: November 28, 2026
           </p>
         </div>
       </section>
@@ -141,18 +156,18 @@ const TermsPage = () => {
           <div className="space-y-5">
             <div className="rounded-2xl border border-accent/20 bg-accent/5 p-5">
               <p className="text-sm leading-7 text-brand">
-                <strong>Important:</strong> This is a draft for the website
-                frontend. The company should review these terms and obtain
-                appropriate legal advice before publishing them as official
-                contractual terms.
+                <strong>Important:</strong> A quote request is an inquiry only.
+                Project scope, pricing, timelines and responsibilities become
+                binding only when agreed upon through the appropriate project
+                agreement.
               </p>
             </div>
 
             <div className="rounded-2xl border border-border bg-white p-6 md:p-8">
               <p className="mb-8 text-sm leading-7 text-muted">
-                Welcome to SS Engineers & Construction. These draft terms
-                describe the general conditions for accessing and using our
-                website and its inquiry facilities.
+                Welcome to SS Engineers & Construction. These Terms & Conditions
+                describe the general rules for accessing and using our website,
+                its information and its inquiry facilities.
               </p>
 
               <div className="space-y-9">
@@ -191,8 +206,7 @@ const TermsPage = () => {
                   Read Our Privacy Policy
                 </h2>
                 <p className="mt-1 text-sm text-muted">
-                  Learn how information submitted through our website may be
-                  handled.
+                  Learn how information shared with us may be handled.
                 </p>
               </div>
 
@@ -212,16 +226,17 @@ const TermsPage = () => {
               </div>
 
               <p className="mb-5 text-sm leading-7 text-white/70">
-                If you have questions about these terms, please contact the
-                company through its verified contact details.
+                If you have questions about these terms, contact our team
+                directly.
               </p>
 
-              <Link
-                to="/contact"
+              <a
+                href={`mailto:${COMPANY_EMAIL}`}
                 className="inline-flex items-center gap-2 rounded-xl bg-accent px-5 py-3 text-sm font-bold text-white transition hover:bg-white hover:text-brand"
               >
-                Contact Us
-              </Link>
+                <FaEnvelope />
+                Email Us
+              </a>
             </div>
           </div>
         </div>
